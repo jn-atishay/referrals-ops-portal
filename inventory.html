@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Inventory &amp; Finance — Referrals Ops</title>
+<link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+
+<nav class="portal-nav">
+  <div class="pn-wrap">
+    <a class="pn-brand" href="index.html"><span class="a">sky</span><span class="b">do</span><span class="sep">/</span><span class="tag">Referrals Ops</span></a>
+    <div class="pn-links">
+      <a href="index.html">Home</a>
+      <a href="playbook.html">CX Playbook</a>
+      <a href="sql-tracking.html">Tracking</a>
+      <a href="sheets-and-ids.html">Sheets &amp; IDs</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="inventory.html">Inventory &amp; Finance</a>
+    </div>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div class="page-head">
+    <h1>Inventory, Orders &amp; Finance <span class="status wip" style="vertical-align:middle">WIP</span></h1>
+    <p>Stock per gift, the dispatch/order log, and the money — gift spend, $30-credit outlay and PO reconciliation. Tables and metric cards are structured with sample rows so the shape is clear; wire them to the inventory, tracking and finance sheets (see <a href="sheets-and-ids.html">Sheets &amp; IDs</a>) to make them real.</p>
+  </div>
+
+  <div class="wip-banner">
+    <span class="ic">📦</span>
+    <div class="body"><b>Sample data shown for shape.</b> Every number and row below is a placeholder marked to illustrate the layout. Connect the sheets / a query to replace them. Nothing here is live.</div>
+  </div>
+
+  <!-- ===== INVENTORY ===== -->
+  <div class="panel" id="inventory">
+    <h2><span class="kicker">Stock</span>Gift inventory</h2>
+    <p class="lead">On-hand vs reserved per gift, with a reorder point so nothing runs dry mid-campaign. Reserved = qualified referrals awaiting dispatch.</p>
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr><th>Gift</th><th>SKU</th><th>Vendor</th><th>On hand</th><th>Reserved</th><th>Available</th><th>Reorder point</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Daily Objects Loop Powerbank</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="status wip">Connect</span></td></tr>
+          <tr><td>Amazon Alexa Echo Dot</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="status wip">Connect</span></td></tr>
+          <tr><td>Coffee Machine</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="status wip">Connect</span></td></tr>
+          <tr><td>Mokobara Bag</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="status wip">Connect</span></td></tr>
+          <tr><td>Wonderchef (kitchen)</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="status wip">Connect</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout idea"><div class="h">Data source</div>Populate from the <b>Gift inventory</b> sheet (Sheets &amp; IDs). "Reserved" can be derived from achieved referrals awaiting dispatch — see the <a href="sql-tracking.html">Tracking Guide</a>.</div>
+  </div>
+
+  <!-- ===== ORDERS ===== -->
+  <div class="panel" id="orders">
+    <h2><span class="kicker">Dispatch</span>Orders &amp; tracking log</h2>
+    <p class="lead">One row per gift sent: the delivery ID, partner and status. This mirrors the dispatch &amp; tracking sheet and answers "where is my parcel" (playbook <a href="playbook.html#R3.2">R3.2</a>).</p>
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr><th>Exporter</th><th>Gift</th><th>Form date</th><th>Dispatch date</th><th>Partner</th><th>Delivery ID</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>12345</td><td>Coffee Machine</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td class="wipcell">no entry</td><td><span class="status wip">No tracking</span></td></tr>
+          <tr><td>23456</td><td>Mokobara Bag</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td class="wipcell">no entry</td><td><span class="status wip">No tracking</span></td></tr>
+          <tr><td>34567</td><td>Wonderchef</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td><span class="status planned">Invoice ask</span></td></tr>
+          <tr style="opacity:.55"><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>sample layout row</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><div class="h">"No tracking" workflow</div>A gift that should have shipped but has no delivery-ID row is an escalation: post exporter_id + gift + form date + "no tracking entry" in #referrals-queries. The rows above are illustrative.</div>
+  </div>
+
+  <!-- ===== FINANCE ===== -->
+  <div class="panel" id="finance">
+    <h2><span class="kicker">Money</span>Finance &amp; reconciliation</h2>
+    <p class="lead">What the programme costs: gift spend, the $30-credit outlay, and cost per achieved referral. Reconciled against procurement POs.</p>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="l">Gift spend · MTD</div><div class="v wipv">Connect finance sheet</div><div class="s">Sum of dispatched gift cost</div></div>
+      <div class="stat"><div class="l">$30 credits · MTD</div><div class="v wipv">From a tracking query</div><div class="s">Referees credited × $30</div></div>
+      <div class="stat"><div class="l">Achieved referrals · MTD</div><div class="v wipv">From a tracking query</div><div class="s">State = achieved this month</div></div>
+      <div class="stat"><div class="l">Cost per achieved referral</div><div class="v wipv">Derived</div><div class="s">(gift spend + credits) ÷ achieved</div></div>
+    </div>
+
+    <h3>PO &amp; reconciliation ledger</h3>
+    <div class="tbl-scroll">
+      <table class="data">
+        <thead><tr><th>PO #</th><th>Vendor</th><th>Gift</th><th>Qty</th><th>Amount</th><th>Invoice</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td>Coffee Machine</td><td>—</td><td>—</td><td class="wipcell">WIP</td><td><span class="status wip">Connect</span></td></tr>
+          <tr><td class="wipcell">WIP</td><td class="wipcell">WIP</td><td>Alexa Echo Dot</td><td>—</td><td>—</td><td class="wipcell">WIP</td><td><span class="status wip">Connect</span></td></tr>
+          <tr style="opacity:.55"><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>sample layout row</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout idea"><div class="h">Procurement contact</div>Skydo buys the gifts; invoices/warranty paperwork come through the procurement contact, per playbook <a href="playbook.html#R3.4">R3.4</a>. Populate this ledger from the Finance &amp; PO tracker sheet.</div>
+  </div>
+
+</main>
+
+<footer>
+  Skydo · Referrals Ops Portal — internal use only. Not indexed.<br>
+  All figures are placeholders — connect the sheets &amp; queries to go live.
+</footer>
+
+<script src="assets/portal.js"></script>
+</body>
+</html>

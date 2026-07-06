@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Skydo Referrals: CX Resolution Portal</title>
+<style>
+  :root{
+    --blue:#2b2f8f; --blue-d:#23266f; --green:#1a9a4e; --green-d:#147a3f;
+    --ink:#1b1d3a; --ink-soft:#454a66; --muted:#6a6f86;
+    --bg:#f4f6fb; --card:#ffffff; --line:#e4e7f2;
+    --ok:#157a43; --ok-bg:#e7f6ec;
+    --warn:#9a6606; --warn-bg:#fcf2dc;
+    --ref:#2b2f8f; --ref-bg:#eceefb;
+    --hi:#fff3a8;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(27,29,58,.05),0 8px 26px rgba(27,29,58,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;}
+  a{color:var(--blue); text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px; margin:0 auto}
+
+  /* ---------- Skydo logo ---------- */
+  .skydo-logo{height:34px; width:auto; display:block}
+  .logo-chip{display:inline-flex; background:#fff; padding:9px 16px; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,.10)}
+
+  /* ---------- Header ---------- */
+  header.top{background:linear-gradient(135deg,#23266f 0%,#2b2f8f 52%,#147a3f 100%); color:#eef3ff; padding:30px 24px 28px}
+  header.top h1{margin:18px 0 8px; font-size:29px; line-height:1.18; color:#fff; font-weight:750}
+  header.top p.sub{margin:0; color:#c7d2f0; max-width:760px; font-size:15px}
+  .meta-row{margin-top:16px; display:flex; flex-wrap:wrap; gap:8px}
+  .meta-row .pill{background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18); color:#e4ecff; padding:5px 12px; border-radius:999px; font-size:12.5px}
+  .meta-row .pill.v{background:var(--green); border-color:var(--green); color:#fff; font-weight:700}
+
+  /* ---------- Panels ---------- */
+  main.wrap{padding:24px}
+  .panel{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px 24px; margin:18px 0}
+  .panel h2{margin:0 0 4px; font-size:19px; color:var(--ink)}
+  .panel h2 .kicker{display:block; font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase; color:var(--green-d); margin-bottom:6px; font-weight:700}
+  .panel p.lead{color:var(--ink-soft); margin:8px 0 4px}
+  .panel.gold{border:1.5px solid #bfe0cd; background:linear-gradient(180deg,#ffffff 0%,#f5fbf7 100%)}
+
+  /* ---------- Collapsible details (101 + campaign) ---------- */
+  details.acc{border:1px solid var(--line); border-radius:11px; margin-top:10px; background:#fbfcff; overflow:hidden}
+  details.acc>summary{cursor:pointer; padding:13px 16px; font-weight:650; color:var(--ink); list-style:none; display:flex; align-items:center; gap:10px}
+  details.acc>summary::-webkit-details-marker{display:none}
+  details.acc>summary .tw{color:var(--green); transition:.15s; font-size:13px}
+  details.acc[open]>summary .tw{transform:rotate(90deg)}
+  details.acc[open]>summary{border-bottom:1px solid var(--line); background:#f3f6fd}
+  details.acc .acc-body{padding:14px 18px; color:var(--ink-soft); font-size:14.7px}
+  details.acc .acc-body p{margin:0 0 8px} details.acc .acc-body p:last-child{margin:0}
+  ul.clean{margin:4px 0 0; padding-left:20px} ul.clean li{margin:5px 0; color:var(--ink-soft)}
+  .kw{background:#e8f6ee; color:var(--green-d); border-radius:5px; padding:1px 6px; font-weight:650}
+
+  /* ---------- Flowchart ---------- */
+  .flow{margin:6px 0 2px}
+  .flow .fstep{position:relative; padding:0 0 16px 46px}
+  .flow .fstep:last-child{padding-bottom:0}
+  .flow .fstep::before{content:""; position:absolute; left:15px; top:28px; bottom:-2px; width:2px; background:linear-gradient(var(--blue),var(--green))}
+  .flow .fstep:last-child::before{display:none}
+  .flow .fnum{position:absolute; left:0; top:0; width:31px; height:31px; border-radius:50%; background:var(--blue); color:#fff; font-weight:700; font-size:13px; display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 4px #eef0fc}
+  .flow .fstep:last-child .fnum{background:var(--green); box-shadow:0 0 0 4px #e8f6ee}
+  .flow .ftext{padding-top:5px; font-size:14.7px; color:var(--ink)}
+  .flow .ftext b{color:var(--ink)}
+
+  /* ---------- Metabase / tool box ---------- */
+  .toolbox{background:#f3f6fd; border:1px solid #d9e0f5; border-radius:11px; padding:13px 16px; margin-top:10px; font-size:14.5px; color:var(--ink-soft)}
+  .toolbox a{font-weight:650; word-break:break-all}
+  .toolbox .h{font-weight:800; font-size:11.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--blue); margin-bottom:6px}
+  table.map{width:100%; border-collapse:collapse; margin-top:8px; font-size:14px}
+  table.map th{text-align:left; font-size:11.5px; letter-spacing:.8px; text-transform:uppercase; color:var(--blue); padding:6px 10px; border-bottom:1.5px solid #d9e0f5}
+  table.map td{padding:8px 10px; border-bottom:1px solid #e6eaf7; color:var(--ink-soft); vertical-align:top}
+  table.map td code{background:#eef0fc; color:var(--blue-d); border-radius:5px; padding:1px 6px; font-size:13px}
+
+  /* ---------- Controls / search (enlarged) ---------- */
+  .controls{position:sticky; top:0; z-index:40; background:rgba(244,246,251,.93); backdrop-filter:blur(8px); padding:14px 24px; border-bottom:1px solid var(--line); margin:0 -24px 8px}
+  .controls .cwrap{max-width:1080px; margin:0 auto; display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+  .search{flex:1; min-width:300px; position:relative}
+  .search input{width:100%; padding:18px 48px 18px 52px; border:2px solid var(--line); border-radius:15px; font-size:16.5px; background:#fff; color:var(--ink); box-shadow:0 2px 10px rgba(27,29,58,.05)}
+  .search input:focus{outline:none; border-color:var(--blue); box-shadow:0 0 0 4px rgba(43,47,143,.14)}
+  .search .ic{position:absolute; left:19px; top:19px; color:var(--muted); font-size:18px}
+  .search .clr{position:absolute; right:14px; top:17px; border:none; background:#eef0f6; color:var(--muted); border-radius:50%; width:26px; height:26px; cursor:pointer; line-height:1; display:none}
+  /* suggestions dropdown */
+  #suggest{position:absolute; left:0; right:0; top:66px; background:#fff; border:1px solid var(--line); border-radius:12px; box-shadow:0 12px 34px rgba(27,29,58,.16); overflow:hidden; display:none; z-index:60}
+  #suggest .sg{display:flex; gap:10px; align-items:center; padding:11px 14px; cursor:pointer; font-size:14.5px; color:var(--ink)}
+  #suggest .sg:hover,#suggest .sg.active{background:#f3f6fd}
+  #suggest .sg .sic{color:var(--muted); font-size:13px}
+  #suggest .sg .sid{margin-left:auto; font-size:11px; font-weight:700; color:#fff; background:var(--blue); border-radius:6px; padding:2px 7px; white-space:nowrap}
+  #suggest .sg .sid.map{background:var(--green-d)}
+  .btn{border:1px solid var(--line); background:#fff; color:var(--ink-soft); padding:13px 14px; border-radius:11px; font-size:13.5px; cursor:pointer; font-weight:600}
+  .btn:hover{border-color:var(--blue); color:var(--blue)}
+  .count{font-size:13px; color:var(--muted)}
+
+  /* ---------- TOC tiles (compact) ---------- */
+  .toc{display:grid; grid-template-columns:repeat(auto-fill,minmax(215px,1fr)); gap:7px; margin-top:8px}
+  .toc a{display:flex; align-items:center; gap:9px; padding:8px 11px; border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--ink); font-size:13px; font-weight:600}
+  .toc a:hover{border-color:var(--green); text-decoration:none; background:#f3faf5}
+  .toc a .n{display:inline-flex; align-items:center; justify-content:center; min-width:21px; height:21px; border-radius:6px; background:var(--blue); color:#fff; font-size:11px; font-weight:700}
+  .toc a .ct{margin-left:auto; background:#eef0f6; color:var(--muted); border-radius:999px; padding:0 7px; font-size:11px; font-weight:700}
+
+  /* ---------- Categories & cards ---------- */
+  section.cat{margin:16px 0}
+  .cat-head{display:flex; align-items:center; gap:12px; cursor:pointer; padding:12px 16px; background:linear-gradient(180deg,#2b2f8f,#262a80); color:#fff; border-radius:12px 12px 0 0; user-select:none}
+  .cat-head .num{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:8px; background:var(--green); color:#fff; font-weight:800; font-size:13px}
+  .cat-head h3{margin:0; font-size:16px; font-weight:700; flex:1}
+  .cat-head .cnt{background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.22); padding:2px 10px; border-radius:999px; font-size:12px; color:#e4ecff}
+  .cat-head .chev{transition:.18s; color:#aab6e8}
+  .cat.closed .chev{transform:rotate(-90deg)}
+  .cat-body{border:1px solid var(--line); border-top:none; border-radius:0 0 12px 12px; background:var(--card)}
+  .cat.closed .cat-body{display:none}
+
+  article.faq{border-top:1px solid var(--line)}
+  article.faq:first-child{border-top:none}
+  .faq-q{width:100%; text-align:left; border:none; background:none; cursor:pointer; padding:14px 18px; display:flex; gap:12px; align-items:flex-start; font:inherit; color:var(--ink)}
+  .faq-q:hover{background:#f6f8fe}
+  .faq-q .id{font-size:11.5px; font-weight:800; color:#fff; background:var(--blue); border-radius:6px; padding:3px 7px; margin-top:2px; white-space:nowrap; letter-spacing:.3px}
+  .faq-q .qt{flex:1; font-size:15.5px; font-weight:600; line-height:1.4}
+  .faq-q .chev{color:var(--muted); margin-top:3px; transition:.18s}
+  article.faq.open .faq-q .chev{transform:rotate(90deg)}
+  .faq-a{display:none; padding:2px 20px 20px 20px}
+  article.faq.open .faq-a{display:block}
+
+  .variants{margin:2px 0 14px; display:flex; flex-wrap:wrap; gap:6px}
+  .variants .vlabel{width:100%; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:1px}
+  .variants .chip{background:#eef0f6; color:var(--ink-soft); border-radius:999px; padding:3px 11px; font-size:12.5px}
+
+  .block{margin:14px 0}
+  .block .h{font-size:11.5px; letter-spacing:1px; text-transform:uppercase; font-weight:800; color:var(--green-d); margin-bottom:6px; display:flex; align-items:center; gap:7px}
+  .block .h .bar{width:14px; height:2px; background:var(--green); border-radius:2px}
+  .how{background:#f3faf5; border-left:3px solid var(--green); border-radius:0 10px 10px 0; padding:10px 14px; color:var(--ink-soft); font-size:14.5px}
+  ol.steps{margin:0; padding-left:0; counter-reset:s; list-style:none}
+  ol.steps>li{position:relative; padding:7px 0 7px 38px; border-bottom:1px dashed #eef1f7; font-size:14.7px; color:var(--ink)}
+  ol.steps>li:last-child{border-bottom:none}
+  ol.steps>li::before{counter-increment:s; content:counter(s); position:absolute; left:0; top:6px; width:25px; height:25px; background:var(--blue); color:#fff; border-radius:50%; font-size:12.5px; font-weight:700; display:flex; align-items:center; justify-content:center}
+  ol.steps ul{margin:6px 0 2px; padding-left:18px}
+  ol.steps ul li{font-size:14px; color:var(--ink-soft); margin:3px 0}
+
+  .callout{border-radius:11px; padding:12px 15px; font-size:14px; margin:14px 0}
+  .callout.warn{background:var(--warn-bg); border:1px solid #f1d9a6; color:#7a4d05}
+  .callout.warn .h{color:var(--warn)}
+  .callout.idea{background:#eef0fc; border:1px solid #d3d8f4; color:#33365e}
+  .callout.idea .h{color:var(--blue)}
+  .callout.case{background:#f3faf5; border:1px solid #cfead8; color:#2c4a38}
+  .callout.case .h{color:var(--green-d)}
+  .callout .h{font-weight:800; font-size:11.5px; letter-spacing:1px; text-transform:uppercase; margin-bottom:5px}
+
+  .xref{margin-top:12px; font-size:13.5px; color:var(--muted)}
+  .xref a, a.rlink{font-weight:700; background:var(--ref-bg); color:var(--ref); padding:1px 7px; border-radius:6px; margin:0 1px}
+  .xref a:hover, a.rlink:hover{text-decoration:none; background:#dde1f8}
+
+  mark.hl{background:var(--hi); color:inherit; border-radius:3px; padding:0 1px}
+  .noresults{display:none; text-align:center; padding:50px 20px; color:var(--muted)}
+  .noresults b{color:var(--ink); font-size:17px; display:block; margin-bottom:6px}
+
+  footer{max-width:1080px; margin:28px auto 60px; padding:0 24px; color:var(--muted); font-size:13px; text-align:center}
+
+  @media (max-width:640px){
+    header.top h1{font-size:23px}
+    .search input{font-size:16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== PORTAL NAV (shared chrome) ===================== -->
+<style>
+  .portal-nav{background:linear-gradient(135deg,#23266f 0%,#2b2f8f 60%,#1c6d3a 100%); box-shadow:0 2px 14px rgba(27,29,58,.18)}
+  .portal-nav .pn-wrap{max-width:1080px; margin:0 auto; padding:6px 18px; display:flex; align-items:center; gap:14px; min-height:56px; flex-wrap:wrap}
+  .portal-nav .pn-brand{display:flex; align-items:center; gap:9px; font-weight:800; font-size:16.5px; color:#fff; white-space:nowrap; text-decoration:none}
+  .portal-nav .pn-brand .a{color:#fff}.portal-nav .pn-brand .b{color:#5fe39b}
+  .portal-nav .pn-brand .sep{color:#7f88c8; font-weight:500}.portal-nav .pn-brand .pn-tag{color:#c7d2f0; font-weight:600; font-size:13.5px}
+  .portal-nav .pn-links{display:flex; gap:3px; margin-left:auto; flex-wrap:wrap}
+  .portal-nav .pn-links a{color:#cdd6f4; padding:7px 12px; border-radius:9px; font-size:13.5px; font-weight:600; text-decoration:none}
+  .portal-nav .pn-links a:hover{color:#fff; background:rgba(255,255,255,.10)}
+  .portal-nav .pn-links a.active{color:#fff; background:rgba(255,255,255,.17)}
+</style>
+<nav class="portal-nav">
+  <div class="pn-wrap">
+    <a class="pn-brand" href="index.html"><span class="a">sky</span><span class="b">do</span><span class="sep">/</span><span class="pn-tag">Referrals Ops</span></a>
+    <div class="pn-links">
+      <a href="index.html">Home</a>
+      <a href="playbook.html" class="active">CX Playbook</a>
+      <a href="sql-tracking.html">Tracking</a>
+      <a href="sheets-and-ids.html">Sheets &amp; IDs</a>
+      <a href="campaigns.html">Campaigns</a>
+      <a href="inventory.html">Inventory &amp; Finance</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== APP ===================== -->
+<div id="app">
+
+<header class="top">
+  <div class="wrap">
+    <span class="logo-chip">
+<img class="skydo-logo" src="https://www.skydo.com/_next/static/media/primary-logo.e5ea77f3.svg" alt="Skydo" onerror="this.style.display='none';var fb=document.getElementById('logoFallback');if(fb)fb.style.display='inline';">
+      <span id="logoFallback" style="display:none;font-weight:800;font-size:23px;letter-spacing:-1px"><span style="color:#2b2f8f">sky</span><span style="color:#1a9a4e">do</span></span>
+    </span>
+    <h1>Skydo Referrals: CX Resolution Portal</h1>
+    <p class="sub">Type the problem in the search bar, follow the steps, and close the query yourself. Escalate only when nothing here answers it.</p>
+    <div class="meta-row">
+      <span class="pill">For: Customer Experience team</span>
+      <span class="pill">24 scenarios across 7 topics</span>
+      <span class="pill v">Version 2.1</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- PROGRAMME 101 -->
+  <div class="panel" id="p101">
+    <h2><span class="kicker">The Mechanics</span>Programme 101</h2>
+    <p class="lead">How the referrals programme works, start to finish.</p>
+
+    <details class="acc" open>
+      <summary><span class="tw">&#9656;</span> How a referral works</summary>
+      <div class="acc-body">
+        <div class="flow">
+          <div class="fstep"><span class="fnum">1</span><div class="ftext">The referrer shares their <b>referral link</b> with someone who gets paid from abroad.</div></div>
+          <div class="fstep"><span class="fnum">2</span><div class="ftext">The referee signs up on Skydo <b>using the link</b>. The link connects the referral on its own. No link? The referral can still be <b>reattributed</b> later (see R2.1).</div></div>
+          <div class="fstep"><span class="fnum">3</span><div class="ftext">The referee finishes onboarding and KYC.</div></div>
+          <div class="fstep"><span class="fnum">4</span><div class="ftext">The referee <b>receives their first international payment</b> on Skydo.</div></div>
+          <div class="fstep"><span class="fnum">5</span><div class="ftext">The referrer gets an <b>email with a Google form</b>.</div></div>
+          <div class="fstep"><span class="fnum">6</span><div class="ftext">The referrer fills in their <b>address</b> in the form.</div></div>
+          <div class="fstep"><span class="fnum">7</span><div class="ftext">The gift ships and arrives in <b>5 to 7 days</b>.</div></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> Referrals are reattributed</summary>
+      <div class="acc-body">
+        <p>Attribution can be fixed. If a referee signed up without the link, or under the wrong link, verify the claim and raise it (see R2.1). The referral is then moved to the right referrer.</p>
+        <p>The reward still follows the normal rules. Most important one: a referral made <b>before the referrer's activation</b> earns $30, not the gift (see R1.3).</p>
+      </div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> What the referee gets</summary>
+      <div class="acc-body"><p>$30 in their Skydo wallet. It lands once they finish onboarding, and shows in the wallet right away.</p></div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> What the referrer gets</summary>
+      <div class="acc-body"><p>The gift of the campaign they referred under. It is sent after the referee receives their first payment.</p></div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> One gift per campaign</summary>
+      <div class="acc-body">
+        <ul class="clean">
+          <li>One gift per campaign (per month).</li>
+          <li>More than one referral in a month? The gift goes to the first successful one.</li>
+          <li>Every referral after that earns $30 in the wallet.</li>
+          <li>It resets next month, so the gift can be earned again.</li>
+        </ul>
+      </div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> Which campaign's gift applies</summary>
+      <div class="acc-body"><p>The gift is set by the campaign the customer <b>referred under</b>. It does not change when a new campaign starts. Referred in June, referee paid in July? The June gift applies. Check any customer's campaign in Metabase (map below).</p></div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> How the system records it</summary>
+      <div class="acc-body">
+        <ul class="clean">
+          <li>A referral has three states: <span class="kw">SIGNUP_COMPLETE</span> &rarr; <span class="kw">ONBOARDING_COMPLETE</span> &rarr; <span class="kw">ACHIEVED</span>.</li>
+          <li><b>Onboarding date</b> = the first entry in <code>cc_account</code>.</li>
+          <li><b>Activation date</b> = the first successful payment (<span class="kw">EXPORTER_SUCCESS</span> in the transaction table).</li>
+          <li>Referred <b>before activation</b> = $30, not the gift. This one rule explains most "wrong reward" complaints (see R1.3).</li>
+        </ul>
+      </div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> Tracking</summary>
+      <div class="acc-body"><p>Customers see every referral and its status in the <span class="kw">referrals section</span> of their <span class="kw">Skydo dashboard</span>.</p></div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> Who can be referred</summary>
+      <div class="acc-body"><p>Anyone who gets paid from abroad and will use Skydo for it. Someone just starting out? A contract with a foreign client works as proof.</p></div></details>
+  </div>
+
+  <!-- CAMPAIGN & ELIGIBILITY -->
+  <div class="panel" id="campaign">
+    <h2><span class="kicker">Current Campaign</span>Gift &amp; eligibility (July 2026)</h2>
+    <p class="lead">This month's gift: <b>Daily Objects Loop Powerbank</b>. The gift and rules change every month. Always check the customer's own campaign before promising anything.</p>
+
+    <div class="toolbox">
+      <div class="h">Check a customer's campaign (Metabase)</div>
+      Open the referral campaign tool: <a href="http://analytics.skydo.com/public/question/3ccd87c1-ca77-40d2-9820-2e5fd95522ee" target="_blank" rel="noopener noreferrer">analytics.skydo.com referral campaign question</a>. Enter the customer's <b>exporter_id</b> and press enter. You will see all their referral details, including their active campaign.
+    </div>
+
+    <details class="acc" open><summary><span class="tw">&#9656;</span> July 2026 eligibility rules</summary>
+      <div class="acc-body">
+        <ul class="clean">
+          <li><b>Activated before 15 June:</b> Powerbank on their first referral who signs up in July.</li>
+          <li><b>Multiple referrals in July:</b> Powerbank for the first, $30 for each one after.</li>
+          <li><b>15-day activation window:</b> refer within 15 days of activating and the gift is an Amazon Alexa.</li>
+        </ul>
+        <p style="margin-top:8px"><b>Always confirm in Metabase</b> which campaign and gift apply to this customer before you commit.</p>
+      </div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> Campaign ID reference</summary>
+      <div class="acc-body">
+        <ul class="clean">
+          <li>June 2026 Coffee Machine campaign = <b>campaign ID 23</b>. The one before it was ID 16.</li>
+          <li>All campaign IDs live in the <code>referral_campaign</code> table. Check there before quoting a gift or raising a change.</li>
+          <li>The campaign ID also tells you whether a renewed gift-form email went out (see R6.1).</li>
+        </ul>
+      </div></details>
+
+    <details class="acc"><summary><span class="tw">&#9656;</span> Where the edge cases live</summary>
+      <div class="acc-body">
+        <ul class="clean">
+          <li>Customer wants a different reward: swap steps in R1.1.</li>
+          <li>Referral missing or credited to the wrong person: reattribution steps in R2.1.</li>
+          <li>"Gift achieved" but nothing arrived: form and delivery checks in R3.1.</li>
+        </ul>
+      </div></details>
+  </div>
+
+  <!-- GOLDEN RULES -->
+  <div class="panel gold" id="rules">
+    <h2><span class="kicker">Work The Query Yourself First</span>Golden rules before you escalate</h2>
+    <p class="lead">Six steps, in order. They close most queries without a single ping to the referrals team.</p>
+
+    <div class="flow" style="margin-top:14px">
+      <div class="fstep"><span class="fnum">1</span><div class="ftext"><b>Search this portal.</b> Type the customer's words below. Every scenario has steps to follow.</div></div>
+      <div class="fstep"><span class="fnum">2</span><div class="ftext"><b>Look up the data in Metabase.</b> Use the map below to find IDs, campaigns, states, and the reward ledger. The data explains most "wrong reward" complaints.</div></div>
+      <div class="fstep"><span class="fnum">3</span><div class="ftext"><b>Get both exporter IDs for any reward change.</b> The change is made on the <b>referee's</b> account, so the referee's exporter ID must be in your very first message, before approval. Without it, the thread stalls.</div></div>
+      <div class="fstep"><span class="fnum">4</span><div class="ftext"><b>Check emails before promising them.</b> The gift-form email is sent <b>by hand</b>. Changing the campaign ID does not send it. Check the ID to know the status (see R6.1), and confirm the mail was really sent before telling the customer.</div></div>
+      <div class="fstep"><span class="fnum">5</span><div class="ftext"><b>Send non-referral credits elsewhere.</b> Promotional credits (like a $20 credit with an expiry mail) belong to other campaigns. Route them to that campaign's owner, and keep them out of the referrals channel (see R4.3).</div></div>
+      <div class="fstep"><span class="fnum">6</span><div class="ftext"><b>Escalate with everything in one message.</b> Post in <b>#referrals-queries</b> only after steps 1 to 5, with: referrer exporter ID, referee exporter ID, the exact ask, the customer's reason, and screenshots. Tag TechOps only for ledger or campaign ID changes. Go to Atishay or Noyonica last, and only when this portal has no answer.</div></div>
+    </div>
+
+    <div class="toolbox" style="margin-top:16px">
+      <div class="h">Metabase map: where to find what</div>
+      <table class="map">
+        <tr><th>You need</th><th>Go to</th><th>Notes</th></tr>
+        <tr><td><b>Exporter ID</b> / the referral itself</td><td><code>referral_relation</code></td><td>One row per referral: referrer, referee, date, state, campaign ID. Skip rows with a blank referrer.</td></tr>
+        <tr><td><b>Exporter email</b></td><td><code>exporter_user</code></td><td>Email is in <code>email_address</code>.</td></tr>
+        <tr><td><b>Campaign ID</b> and gift details</td><td><code>referral_campaign</code></td><td>One row per campaign. June Coffee Machine = ID 23.</td></tr>
+        <tr><td>Referral <b>timing and history</b></td><td><code>aud_referral_relation</code></td><td>The history table. Use it for "when did they refer" and missed-window checks.</td></tr>
+        <tr><td><b>Onboarding date</b></td><td><code>cc_account</code></td><td>The first entry is the onboarding date.</td></tr>
+        <tr><td><b>Activation date</b></td><td>transaction table</td><td>The first <code>EXPORTER_SUCCESS</code> row. Referred before activation = $30, not the gift.</td></tr>
+      </table>
+    </div>
+
+    <div class="callout warn"><div class="h">The one rule that unblocks TechOps</div>Every reward or campaign change request must name the <b>referee's exporter ID</b> in the query itself, even before approval. The referrer's ID alone is not enough. The reward ledger sits on the referee's account.</div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <div class="cwrap">
+      <div class="search">
+        <span class="ic">&#128269;</span>
+        <input id="q" type="text" placeholder='Search anything: "wants $30 instead of gift", where to find exporter ID, no tracking' autocomplete="off" spellcheck="false">
+        <button class="clr" id="clr" title="Clear">&#10005;</button>
+        <div id="suggest"></div>
+      </div>
+      <button class="btn" id="expandAll">Expand all</button>
+      <button class="btn" id="collapseAll">Collapse all</button>
+      <span class="count" id="count"></span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <nav class="toc" id="toc">
+    <a href="#cat-1"><span class="n">1</span> Reward swaps &amp; exceptions<span class="ct">4</span></a>
+    <a href="#cat-2"><span class="n">2</span> Attribution &amp; reattribution<span class="ct">5</span></a>
+    <a href="#cat-3"><span class="n">3</span> Gift delivery &amp; tracking<span class="ct">4</span></a>
+    <a href="#cat-4"><span class="n">4</span> The $30 wallet credit<span class="ct">3</span></a>
+    <a href="#cat-5"><span class="n">5</span> Qualification &amp; status<span class="ct">4</span></a>
+    <a href="#cat-6"><span class="n">6</span> Emails &amp; the Google form<span class="ct">2</span></a>
+    <a href="#cat-7"><span class="n">7</span> Escalation &amp; tricky conversations<span class="ct">2</span></a>
+  </nav>
+
+  <div class="noresults" id="noresults"><b>No matches found</b>Try fewer or simpler words. For "where do I find X" questions, use the Metabase map in the golden rules panel above.</div>
+
+  <div id="faqs">
+  <!-- ============ CATEGORY 1 ============ -->
+  <section class="cat" id="cat-1">
+    <div class="cat-head"><span class="num">1</span><h3>Reward swaps &amp; exceptions</h3><span class="cnt">4</span><span class="chev">&#9662;</span></div>
+    <div class="cat-body">
+
+      <article class="faq" id="R1.1">
+        <button class="faq-q"><span class="id">R1.1</span><span class="qt">Customer wants $30 instead of the campaign gift, or the gift instead of $30</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">wants coffee machine not 30 USD</span><span class="chip">wants cash instead of the powerbank</span><span class="chip">swap the reward</span><span class="chip">gift not useful for the customer</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Yes, the reward can be swapped, case by case. Every swap follows the same path: reason, then approval, then TechOps updates the ledger, then the customer gets an email. TechOps makes the change on the referee's account, so the referee's exporter ID is needed from the start.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Ask the customer <b>why</b> they want the other reward. Approval depends on the reason (for example: the gift is not useful to them, or they got the campaign email and expected that gift).</li>
+            <li>Get <b>both exporter IDs</b>: referrer and referee. Put the referee's ID in your first message.</li>
+            <li>Post in #referrals-queries with both IDs, the swap asked for, and the reason.</li>
+            <li>Once approved, TechOps updates the referee's ledger (and the campaign ID if needed).</li>
+            <li>Check the change in Metabase, then make sure the <b>email to the customer goes out</b>. This email is sent by hand (see R6.1).</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real cases</div>Exp 171186 wanted $30 because the coffee machine was of no use to him. Approved once the reason was shared, ledger updated on referee 219204. Exp 175899 wanted the coffee machine because he got the June campaign email. Approved, ledger updated on referee 217131, email sent. Both threads lost half a day waiting for the referee ID. Collect it upfront.</div>
+          <div class="xref">Related: R6.1 R7.1 R1.3</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R1.2">
+        <button class="faq-q"><span class="id">R1.2</span><span class="qt">Customer missed the campaign window by hours or days and asks for an exception</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">missed qualification by a few hours</span><span class="chip">one time exception request</span><span class="chip">saw the campaign banner but referred late</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">A one-time exception can be approved when the miss is small and the case is genuine. If approved: the referee's $30 is removed from the ledger, the campaign ID is set to the gift campaign, and the form email is sent by hand.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Check the timing in <code>aud_referral_relation</code>: when did they refer versus when the campaign window closed.</li>
+            <li>Confirm the customer really saw the campaign (dashboard banner or email). Take a screenshot.</li>
+            <li>Post in #referrals-queries with both exporter IDs, the timing proof, and the ask. Frame it as a one-time exception.</li>
+            <li>If approved: TechOps removes the $30 from the <b>referee's</b> ledger and changes the campaign ID.</li>
+            <li>The form email does <b>not</b> go out on its own after the ID change. Make sure it is sent by hand, then confirm with the customer (see R6.1).</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real case</div>Exp 205 missed the Coffee Machine window by a few hours after seeing the dashboard banner. Approved as a one-time exception: $30 removed from referee 212529, campaign ID set to 23. The form email did not fire on its own and was sent by hand a day later. Check the email step every time.</div>
+          <div class="xref">Related: R6.1 R1.1 R7.1</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R1.3">
+        <button class="faq-q"><span class="id">R1.3</span><span class="qt">Customer says they were shown one reward but received another</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">saw coffee machine but got 30 dollars</span><span class="chip">got credit instead of the gift</span><span class="chip">wrong reward delivered</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Two checks explain almost every "wrong reward" complaint. One: the reward ledger. The right reward may already be there. Two: activation timing. A referral made before the referrer's activation earns $30, not the gift. That is by design.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Open the <b>reward ledger</b> for the referee's exporter ID first. If the right reward is already there, share the proof and close the query.</li>
+            <li>Compare the <b>activation date</b> (first EXPORTER_SUCCESS payment) with the referral date in <code>referral_relation</code>. Referred before activation = $30 by design. Explain this to the customer.</li>
+            <li>Ask where the customer saw the gift (banner or email). The banner shows the live campaign, and their own eligibility can differ.</li>
+            <li>Only if the data really shows a mistake, post in #referrals-queries as a possible logic issue, with both exporter IDs and screenshots.</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real cases</div>Exp 96995 reported getting $30 when a power bank was due. The ledger showed the power bank was already delivered to referee 190526, so the query closed with proof. Exp 199071 referred his own other account (referee 210259) and expected the coffee machine. His account activated on 29 May and the referral came before activation, so $30 was correct.</div>
+          <div class="xref">Related: R2.3 R1.1 R5.1</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R1.4">
+        <button class="faq-q"><span class="id">R1.4</span><span class="qt">Customer wants a different campaign's gift, or asks to hold a change already in motion</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">wants last month's gift</span><span class="chip">the gift changed on the customer</span><span class="chip">hold the campaign change</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">The gift is set by the campaign the customer referred under, and it does not change when a new campaign starts. A cross-campaign request is an exception, and it follows the same path as a swap (R1.1). If the referrals owner is already talking to the customer, hold any change until they confirm.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Check the customer's campaign in Metabase first. The referred-under campaign is the default answer.</li>
+            <li>Explain warmly: the gift on offer when they referred is the gift they get.</li>
+            <li>If they push for another campaign's gift, treat it as a swap and follow R1.1 in full, with both exporter IDs and the reason.</li>
+            <li>Before acting, read the thread. If the referrals owner asked to hold a change, wait for their go-ahead.</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real case</div>Exp 206407 had a campaign ID change from 16 to 23 raised to grant the coffee machine. The referrals owner was in direct touch with the customer and asked for the change to be held. Always scan the thread before pushing a change through.</div>
+          <div class="xref">Related: R1.1 R6.1</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY 2 ============ -->
+  <section class="cat" id="cat-2">
+    <div class="cat-head"><span class="num">2</span><h3>Attribution &amp; reattribution</h3><span class="cnt">5</span><span class="chev">&#9662;</span></div>
+    <div class="cat-body">
+
+      <article class="faq" id="R2.1">
+        <button class="faq-q"><span class="id">R2.1</span><span class="qt">Referral is not attributed: the referee signed up without the link, or after the fact</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">reattribute the referral</span><span class="chip">friend signed up directly</span><span class="chip">referral missing from the dashboard</span><span class="chip">attribute this referral</span><span class="chip">add the referral code later</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Referrals are reattributed. The link connects a referral on its own, and when the link was skipped or missed, the referral can still be attributed to the right referrer after a quick check. The reward then follows the normal rules, including the activation-timing rule in R1.3.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Confirm the claim: who referred whom, and how the referee signed up. Get the referee's account email so you can find them in <code>exporter_user</code>.</li>
+            <li>Pull both exporter IDs from <code>referral_relation</code> and check whether a referral row already exists for the referee.</li>
+            <li>Post the reattribution in #referrals-queries with both exporter IDs and the proof it is a genuine referral.</li>
+            <li>Once attributed, check which reward applies (activation timing, see R1.3) and set the customer's expectation.</li>
+            <li>Tell the customer what was done and what happens next. Do not promise a specific gift before the checks are done.</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real case</div>Exp 96995 had his referral attributed after the fact. The reward was then verified against the ledger. Reattribution and reward check are two separate steps. Finish both.</div>
+          <div class="xref">Related: R1.3 R7.1 R2.5</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R2.2">
+        <button class="faq-q"><span class="id">R2.2</span><span class="qt">Referee used the wrong link, or two customers claim the same referee</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">wrong referral code used</span><span class="chip">credit went to the wrong referrer</span><span class="chip">duplicate referral claim</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">The link used at sign-up decides the default credit. When a real mistake is verified (the referee confirms who actually referred them), the referral can be moved to the right referrer, same process as R2.1.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Check <code>referral_relation</code>: who is recorded as the referrer for this referee.</li>
+            <li>If the record matches the claim, nothing to change. Share what the record shows.</li>
+            <li>If a real mistake is verified, raise a reattribution with both exporter IDs, the referee's confirmation, and the proof.</li>
+            <li>Keep both sides informed of the outcome.</li>
+          </ol></div>
+          <div class="xref">Related: R2.1 R2.4</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R2.3">
+        <button class="faq-q"><span class="id">R2.3</span><span class="qt">Customer referred their own second account or business</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">self referral</span><span class="chip">referred my other account</span><span class="chip">refer companies the customer owns</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">A registered business is a separate entity, so a customer can refer their own registered business if it gets paid from abroad and will use Skydo. Referring their own second personal, freelancer, or sole proprietor account is not allowed. It is the same person. Even for a valid self-referral, the reward follows activation timing (see R1.3).</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Ask what the second account is: a registered business, or another personal account.</li>
+            <li>Registered business that gets paid from abroad: allowed. Treat it like any referral.</li>
+            <li>Second personal account of the same person: explain it does not qualify.</li>
+            <li>If the referral is valid but the reward looks wrong, run the R1.3 checks before escalating. Referred before activation = $30, even during a gift campaign.</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real case</div>Exp 199071 referred his other account (210259) and expected the coffee machine. The account activated on 29 May and the referral came before activation, so $30 was correct. The data closed the query in one reply.</div>
+          <div class="xref">Related: R1.3 R5.4</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R2.4">
+        <button class="faq-q"><span class="id">R2.4</span><span class="qt">Referee was already talking to Sales; customer asks who gets the credit</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">sales was already in touch with the referee</span><span class="chip">existing lead got referred</span><span class="chip">does sales contact block the referral</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Sales contact does not block a referral. If the referee signs up through the link (or the referral is verified and attributed), the referrer gets the credit.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Reassure the referrer: sales contact does not override their referral.</li>
+            <li>Confirm the sign-up route. Link used: credit is automatic. No link: follow the reattribution steps in R2.1.</li>
+          </ol></div>
+          <div class="xref">Related: R2.1 R2.2</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R2.5">
+        <button class="faq-q"><span class="id">R2.5</span><span class="qt">Customer insists the referee used their link but the records disagree</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">records say the customer did not refer them</span><span class="chip">credit dispute with proof</span><span class="chip">they used my link but I am not credited</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">The referral record is the source of truth, and it can be corrected. Check the record first. If the claim checks out against proof, reattribute. If the record shows a different link, share the proof politely.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Look up the referee in <code>referral_relation</code> and read the recorded referrer and state.</li>
+            <li>Record matches the claim: fix anything downstream (reward, status) and update the customer with a timeline.</li>
+            <li>Record does not match: ask the referee to confirm who referred them. A confirmed claim supports a reattribution (see R2.1).</li>
+            <li>Dispute still stands: share what the records show, with proof, and close respectfully.</li>
+          </ol></div>
+          <div class="xref">Related: R2.1 R2.2</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY 3 ============ -->
+  <section class="cat" id="cat-3">
+    <div class="cat-head"><span class="num">3</span><h3>Gift delivery &amp; tracking</h3><span class="cnt">4</span><span class="chev">&#9662;</span></div>
+    <div class="cat-body">
+
+      <article class="faq" id="R3.1">
+        <button class="faq-q"><span class="id">R3.1</span><span class="qt">"Gift achieved" on the dashboard but nothing has arrived</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">customer waiting for the gift</span><span class="chip">gift achieved but not delivered</span><span class="chip">reward email received but no parcel</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">"Gift achieved" means the referral qualified. The usual blocker is the Google form. No form, no dispatch. Once the form is in, delivery takes 5 to 7 days.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Confirm the referral qualified ("gift achieved", or state ACHIEVED in Metabase).</li>
+            <li>Check whether the customer got the email and filled the Google form. This is the blocker in most cases.</li>
+            <li>Form missing? Confirm the email was really sent before resending. It is sent by hand in exception cases (see R6.1). Follow up by message or call in case it went to spam.</li>
+            <li>Form is in? Delivery takes 5 to 7 days. Past that, move to the tracking steps in R3.2.</li>
+          </ol></div>
+          <div class="xref">Related: R3.2 R6.1</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R3.2">
+        <button class="faq-q"><span class="id">R3.2</span><span class="qt">No tracking available for a dispatched gift</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">no tracking for the coffee machine</span><span class="chip">no tracking for the mokobara bag</span><span class="chip">where is the parcel</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Every dispatched gift has a delivery ID and a delivery partner in the tracking sheet. No entry in the sheet for a gift that should have shipped? Then the dispatch itself needs checking, and that is an escalation with specifics.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Confirm the form was submitted and note the date. Dispatch only starts after the form.</li>
+            <li>Check the tracking sheet for the delivery ID and partner, then check the status on the partner's site.</li>
+            <li>Tracking exists: share the status and expected date with the customer.</li>
+            <li>No tracking entry at all: post in #referrals-queries with the exporter ID, the gift, the form date, and "no tracking entry". Give the customer a follow-up time and keep it.</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real cases</div>Exp 42595 (Coffee Machine) and Exp 61703 (Mokobara) were both raised as "no tracking". Naming the exporter ID and the gift is what makes these actionable.</div>
+          <div class="xref">Related: R3.1 R3.3</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R3.3">
+        <button class="faq-q"><span class="id">R3.3</span><span class="qt">Gift went to the wrong address, or the parcel is lost</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">change the shipping address</span><span class="chip">parcel marked delivered but not received</span><span class="chip">gift lost in transit</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Gifts ship to the address in the Google form. Before dispatch, the address can be corrected. After dispatch, work with the delivery partner: track, escalate, and reship if the parcel is really lost.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Compare the address in the form with where the customer wants it.</li>
+            <li>Not shipped yet: correct the address before dispatch.</li>
+            <li>Shipped: check the partner tracking. Marked delivered but not received: escalate to the partner and update the customer once there is an answer.</li>
+            <li>Really lost: arrange a reship and give a clear timeline.</li>
+          </ol></div>
+          <div class="xref">Related: R3.2</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R3.4">
+        <button class="faq-q"><span class="id">R3.4</span><span class="qt">Customer needs a purchase invoice or warranty registration for a physical gift</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">invoice for warranty registration</span><span class="chip">wonderchef warranty</span><span class="chip">proof of purchase for the gift</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">For most branded gifts, the warranty is registered automatically at purchase, so the customer usually does not need the invoice. If paperwork is really needed, it comes from the procurement contact, since Skydo buys the gifts.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Tell the customer the warranty is usually auto-registered, and offer to confirm it for their unit.</li>
+            <li>If an invoice copy is really needed, reach the procurement contact: Puja at Procter. Laraib has her number.</li>
+            <li>Share the document or the warranty confirmation with the customer, with a date for when they will have it.</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real case</div>Exp 200897 needed a purchase invoice to register a Wonderchef warranty. Answer: the warranty is usually auto-registered, and the invoice route is through Puja (Procter) via Laraib.</div>
+          <div class="xref">Related: R3.2</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY 4 ============ -->
+  <section class="cat" id="cat-4">
+    <div class="cat-head"><span class="num">4</span><h3>The $30 wallet credit</h3><span class="cnt">3</span><span class="chev">&#9662;</span></div>
+    <div class="cat-body">
+
+      <article class="faq" id="R4.1">
+        <button class="faq-q"><span class="id">R4.1</span><span class="qt">Referee's $30 is not showing in the wallet</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">30 dollars not credited</span><span class="chip">referee missing the wallet credit</span><span class="chip">signed up but no 30 USD</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">The $30 lands once the referee finishes onboarding. It then shows in their Skydo wallet. Onboarding not done means the credit is simply not due yet.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Confirm the sign-up is connected to a referral (check <code>referral_relation</code>; missing: see R2.1).</li>
+            <li>Read the referral state. SIGNUP_COMPLETE means onboarding is still open. The credit lands at ONBOARDING_COMPLETE.</li>
+            <li>Onboarding done but credit missing: check the reward ledger for the referee's exporter ID, then escalate with the ID if the ledger is empty.</li>
+          </ol></div>
+          <div class="xref">Related: R2.1 R5.1</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R4.2">
+        <button class="faq-q"><span class="id">R4.2</span><span class="qt">What the $30 can and cannot do (use, withdrawal, expiry)</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">can the customer withdraw the 30 USD</span><span class="chip">does the referral credit expire</span><span class="chip">balance lower than expected</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">The referral $30 is wallet credit. It goes against Skydo's flat fee on a payment the customer receives. It cannot be taken out as cash, and it does not expire. If a fee is smaller than the balance, the rest stays in the wallet for the next payment.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Withdrawal ask: explain it is fee credit used inside Skydo. It cannot be paid out as cash or converted to INR.</li>
+            <li>Expiry ask: the referral $30 does not expire. Careful: promotional credits can expire, and those are a different thing (see R4.3).</li>
+            <li>Balance looks low or "gone": check the wallet ledger. Usually the credit went against a fee, which is its job. Share the ledger entry.</li>
+          </ol></div>
+          <div class="xref">Related: R4.3</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R4.3">
+        <button class="faq-q"><span class="id">R4.3</span><span class="qt">Credit in the ledger the customer does not recognise, or a promotional credit with an expiry mail</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">promotional reward in the ledger</span><span class="chip">20 dollar credit expiry email</span><span class="chip">credit still on the dashboard after expiry</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">The reward ledger holds more than referral rewards. Promotional and retention credits belong to other teams' campaigns and follow their own rules, including expiry. Referral credits do not expire. Promotional ones can.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Open the reward ledger and read the credit's label. "Promotional reward" means it is not a referral credit.</li>
+            <li>Route promotional credits to the campaign owner (growth or marketing), and keep them out of the referrals channel. They confirm expiry and whether it can still be used.</li>
+            <li>Do not tell the customer the credit works on their next transaction until the campaign owner confirms.</li>
+            <li>Ledger entry really is a referral credit and looks wrong? Escalate with the exporter ID and a screenshot.</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real case</div>Exp 124320 had a $20 "promotional reward" in the ledger with an expiry email, still showing on the dashboard. It belonged to a growth campaign, and the campaign owner picked it up. Routing it right the first time saves a full day.</div>
+          <div class="xref">Related: R4.2 R7.1</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY 5 ============ -->
+  <section class="cat" id="cat-5">
+    <div class="cat-head"><span class="num">5</span><h3>Qualification &amp; status</h3><span class="cnt">4</span><span class="chev">&#9662;</span></div>
+    <div class="cat-body">
+
+      <article class="faq" id="R5.1">
+        <button class="faq-q"><span class="id">R5.1</span><span class="qt">What makes a referral qualify, and how the states map in Metabase</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">what counts as the first payment</span><span class="chip">is there a minimum amount</span><span class="chip">referral states explained</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">A referral qualifies when the referee, connected to the referrer, finishes KYC and receives their first successful international payment on Skydo. No minimum amount. No deadline. In Metabase, the states run SIGNUP_COMPLETE &rarr; ONBOARDING_COMPLETE &rarr; ACHIEVED. Only a successful payment (EXPORTER_SUCCESS) counts. Failed, bounced, refunded, or off-Skydo payments do not.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Read the referral's state in <code>referral_relation</code> before answering any "where is my reward" question. The state names the open step.</li>
+            <li>SIGNUP_COMPLETE: referee still onboarding. ONBOARDING_COMPLETE: waiting on the first successful payment. ACHIEVED: qualified, move to gift delivery (R3.1).</li>
+            <li>Payment failed or refunded? Reassure the customer the referral is not lost. The next successful payment qualifies it.</li>
+          </ol></div>
+          <div class="xref">Related: R3.1 R5.2</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R5.2">
+        <button class="faq-q"><span class="id">R5.2</span><span class="qt">Status shows "pending" or "not qualified" even though the referee paid</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">referee clearly paid but not qualified</span><span class="chip">status stuck on pending</span><span class="chip">referral not counting despite payment</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Three checks settle this: the referral connection, the payment's success, and the account identity. If all three pass and the status is still wrong, it may need compliance input. Escalate that rather than guessing an answer.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Confirm the referral exists in <code>referral_relation</code> (missing: see R2.1).</li>
+            <li>Confirm the payment is a successful Skydo payment: an EXPORTER_SUCCESS row on the referee's account. Pending, failed, or off-Skydo payments do not count.</li>
+            <li>Confirm it is the same account that was referred, and not the referee's other account.</li>
+            <li>All three pass? Escalate with both exporter IDs and the transaction reference. If compliance is involved, act on their input and never share the referee's account details with the referrer.</li>
+          </ol></div>
+          <div class="xref">Related: R5.1 R5.3</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R5.3">
+        <button class="faq-q"><span class="id">R5.3</span><span class="qt">Referee was rejected in KYC or compliance</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">referee failed verification</span><span class="chip">compliance rejected the referral</span><span class="chip">referrer asking about the referee's account</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">A referral qualifies only when the referee receives a first payment, which needs a passed KYC. A rejected referee cannot receive a payment, so the referral cannot qualify. The referee's KYC outcome is private to their account. Never share it with the referrer.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Explain the qualification rule without revealing the referee's outcome or reasons.</li>
+            <li>Encourage the referrer to refer others who get paid from abroad.</li>
+          </ol></div>
+          <div class="xref">Related: R5.1</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R5.4">
+        <button class="faq-q"><span class="id">R5.4</span><span class="qt">Customer asks why their second referral earned $30 and not another gift</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">only credit for the second referral</span><span class="chip">customer expected two gifts</span><span class="chip">is the account flagged</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">One gift per campaign, by design. The first successful referral in a month earns the gift. Every one after that earns $30. It resets next month. Nothing is wrong with the account, and it is not an abuse flag. A real fraud flag is a compliance matter and goes to them, without sharing detection details.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Explain the one-gift-per-campaign design and the $30 for each extra referral.</li>
+            <li>Reassure the customer it resets next month, when the gift can be earned again.</li>
+            <li>Real compliance or fraud flag on the account? Route to compliance and keep detection details internal.</li>
+          </ol></div>
+          <div class="xref">Related: R5.1 R1.3</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY 6 ============ -->
+  <section class="cat" id="cat-6">
+    <div class="cat-head"><span class="num">6</span><h3>Emails &amp; the Google form</h3><span class="cnt">2</span><span class="chev">&#9662;</span></div>
+    <div class="cat-body">
+
+      <article class="faq" id="R6.1">
+        <button class="faq-q"><span class="id">R6.1</span><span class="qt">Did the gift-form email actually go out? (including after a reward or campaign change)</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">customer has not received the google form</span><span class="chip">was the renewed email sent</span><span class="chip">campaign id changed but no email</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">When a customer is moved to another campaign's gift, the campaign ID is your checkpoint. Same ID as before: the renewed email has not been sent. New ID: the renewed email has been sent. One caution: this email is sent by hand. A fresh ID change does not send it on its own, so confirm the send before telling the customer to check their inbox.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Look up the customer's campaign ID via their referral record and <code>referral_campaign</code>.</li>
+            <li>ID unchanged from the previous campaign: the renewed email is not out yet. Ask for the change and the send in #referrals-queries. Share the transaction ID if TechOps asks.</li>
+            <li>ID changed: the renewed email has been sent. Ask the customer to check inbox and spam first.</li>
+            <li>Fresh change? Confirm someone actually sent the mail. In past cases the ID changed a day before anyone sent it. Do not assume.</li>
+            <li>Close the loop: confirm the email landed and the form is filled.</li>
+          </ol></div>
+          <div class="callout case"><div class="h">Real cases</div>Exp 206407: campaign ID moved from 16 to 23, and the open question was whether the form email had gone out. Exp 205: the ID changed to 23 but the email never fired on its own. It was confirmed manual and sent by hand the next day. The ID check plus a send confirmation covers both.</div>
+          <div class="xref">Related: R1.1 R1.2 R3.1</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R6.2">
+        <button class="faq-q"><span class="id">R6.2</span><span class="qt">Referral emails going to the wrong address, or not arriving at all</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">notifications on the wrong email</span><span class="chip">customer never notified the referee qualified</span><span class="chip">update the notification email</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Referral and delivery updates go to the email on record: the account email in exporter_user, and the address given in the Google form for delivery updates. Most issues come down to which email is on record, or to a referral that has not qualified yet, so no email was due.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Pull the email from <code>exporter_user</code> (email_address) and compare it with the customer's current email and their form answer.</li>
+            <li>Wrong or old email: fix the record, resend, and give a time for the update.</li>
+            <li>Correct email but nothing sent: check whether the referral has qualified. Not qualified means no email was due (see R5.1).</li>
+            <li>Correct email and qualified: ask them to check spam and promotions, confirm the mail was really sent (manual sends, see R6.1), and resend if needed.</li>
+          </ol></div>
+          <div class="xref">Related: R6.1 R5.1</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ CATEGORY 7 ============ -->
+  <section class="cat" id="cat-7">
+    <div class="cat-head"><span class="num">7</span><h3>Escalation &amp; tricky conversations</h3><span class="cnt">2</span><span class="chev">&#9662;</span></div>
+    <div class="cat-body">
+
+      <article class="faq" id="R7.1">
+        <button class="faq-q"><span class="id">R7.1</span><span class="qt">When and how to escalate a referral query</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">what to include in a referrals-queries post</span><span class="chip">who approves reward changes</span><span class="chip">when to tag techops</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Escalation is the last step, and a complete first message is what makes it fast. TechOps executes ledger and campaign ID changes after approval. Atishay and Noyonica come in only when this portal and the data have no answer.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Work the golden rules first: portal search, Metabase lookup, and the matching scenario card.</li>
+            <li>Post in #referrals-queries with everything in one message: referrer exporter ID, <b>referee exporter ID</b>, the exact ask, the customer's reason, and screenshots or ledger entries.</li>
+            <li>For reward or campaign changes, the referee's exporter ID goes in the first message, even before approval. TechOps makes the change on the referee's account.</li>
+            <li>Tag TechOps only for execution (ledger or campaign ID changes), after the approval is on the thread.</li>
+            <li>After execution: check the change in Metabase, confirm the email step (see R6.1), and tell the customer. A thread is done when the customer has confirmation, and not before.</li>
+          </ol></div>
+          <div class="callout idea"><div class="h">Why the full message matters</div>In one week of channel history, three threads stalled half a day or more because the referee's exporter ID was missing from the first message. A complete first message turns a two-day thread into a two-hour one.</div>
+          <div class="xref">Related: R1.1 R6.1</div>
+        </div>
+      </article>
+
+      <article class="faq" id="R7.2">
+        <button class="faq-q"><span class="id">R7.2</span><span class="qt">Customer wants a manager, or says the programme is unfair</span><span class="chev">&#9656;</span></button>
+        <div class="faq-a">
+          <div class="variants"><span class="vlabel">Also logged as</span><span class="chip">escalate to whoever runs referrals</span><span class="chip">customer did everything and got nothing</span><span class="chip">the process is too slow</span></div>
+          <div class="block"><div class="h"><span class="bar"></span>How it works</div><div class="how">Referral queries are owned and closed in CX. The programme is not luck-based: when the steps are done, the reward follows. So an unresolved case always traces back to one open step or a delivery issue. Resolve here, and go to the referrals lead only when the portal really has no answer.</div></div>
+          <div class="block"><div class="h"><span class="bar"></span>Handle it</div><ol class="steps">
+            <li>Reassure the customer they are in the right place, and stay confident. Do not refuse the ask outright, and do not redirect by default.</li>
+            <li>Check their referral in Metabase and name the exact open step: attribution, onboarding, first payment, form, or delivery.</li>
+            <li>Qualified but nothing received? Treat it as a delivery matter and chase it (R3.1, R3.2).</li>
+            <li>Lead with what happened, what you are doing, and when they will hear back. Never make them chase you.</li>
+          </ol></div>
+          <div class="xref">Related: R3.1 R7.1</div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  </div>
+
+</main>
+
+<footer>
+  <p>Skydo Referral Programme &middot; CX Resolution Portal &middot; Internal use only.</p>
+</footer>
+
+</div><!-- /#app -->
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- APP ---------------- */
+  function initApp(){
+
+    var faqs = [].slice.call(document.querySelectorAll('article.faq'));
+    var cats = [].slice.call(document.querySelectorAll('section.cat'));
+    var q = document.getElementById('q');
+    var clr = document.getElementById('clr');
+    var count = document.getElementById('count');
+    var noresults = document.getElementById('noresults');
+    var suggest = document.getElementById('suggest');
+
+    /* ----- auto-link inline R-ids (e.g. "see R1.3") ----- */
+    var idSet = {};
+    faqs.forEach(function(f){ idSet[f.id]=true; });
+    function autoLink(root){
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while(n = walker.nextNode()){ nodes.push(n); }
+      var re = /\bR\d{1,2}\.\d{1,2}\b/;
+      nodes.forEach(function(node){
+        if(!re.test(node.nodeValue)) return;
+        var p = node.parentNode;
+        if(!p || p.tagName==='A' || p.classList && (p.classList.contains('id'))) return;
+        var parts = node.nodeValue.split(/(\bR\d{1,2}\.\d{1,2}\b)/);
+        if(parts.length<2) return;
+        var frag = document.createDocumentFragment();
+        parts.forEach(function(part){
+          if(/^R\d{1,2}\.\d{1,2}$/.test(part) && idSet[part]){
+            var a = document.createElement('a');
+            a.className='rlink'; a.href='#'+part; a.textContent=part;
+            frag.appendChild(a);
+          } else if(part){
+            frag.appendChild(document.createTextNode(part));
+          }
+        });
+        p.replaceChild(frag, node);
+      });
+    }
+    autoLink(document.getElementById('app'));
+
+    /* ----- panels that the search can jump to ----- */
+    var PANELS = [
+      {id:'rules',    badge:'MAP',  text:'Where to find exporter ID, referral ID, campaign ID, email, dates (Metabase map)',
+       kw:'where find locate lookup look referral exporter customer id ids number email address campaign metabase table database data ledger activation onboarding date state history referee referrer'},
+      {id:'rules',    badge:'SOP',  text:'Golden rules: what to do before escalating',
+       kw:'escalate escalation rules steps sop process before posting slack channel techops approval referee id packet golden'},
+      {id:'campaign', badge:'GIFT', text:'Current campaign gift and eligibility (July 2026)',
+       kw:'current gift month this powerbank alexa eligibility eligible campaign july active reward offer banner'},
+      {id:'p101',     badge:'101',  text:'How the referral programme works (Programme 101)',
+       kw:'how programme program works referral basics mechanics states reattributed link signup gift 30 explain start'}
+    ];
+
+    /* ----- search index + suggestions ----- */
+    var SYN = [
+      ['gift','reward','prize','present','powerbank','alexa','bag','voucher','hamper','machine','mokobara','wonderchef'],
+      ['referee','friend','referral','person','they','them','invitee','contact'],
+      ['referrer','customer','cx','user'],
+      ['money','30','dollar','dollars','usd','credit','wallet','cashback','bonus','cash'],
+      ['missing','didnt','dont','havent','not','no','lost','never','yet','still','waiting','nothing','none'],
+      ['receive','received','get','got','getting','arrive','arrived','delivered','delivery','came','come','reach','reached','show','showed','shown'],
+      ['find','where','locate','look','looking','lookup','check','checking','see','view','open'],
+      ['link','url','code','invite','invitation'],
+      ['signup','sign','register','registered','registering','create','join','joined','onboard','onboarding'],
+      ['transaction','payment','transfer','pay','paid','transact','transacted','activation','activated'],
+      ['cancel','undo','remove','delete','stop','withdraw'],
+      ['email','mail','notification','notified','notify','alert','message'],
+      ['tax','taxable','gst','tds','income'],
+      ['eligible','eligibility','allowed','qualify','qualified','qualifies'],
+      ['campaign','month','monthly','july','june'],
+      ['track','tracking','status','dashboard','pending','progress','parcel'],
+      ['kyc','verification','compliance','approved','rejected'],
+      ['multiple','many','more','several','limit','cap','unlimited'],
+      ['address','shipping','courier','ship'],
+      ['fake','fraud','abuse','misuse','identity','scam','flagged'],
+      ['expire','expiry','expires','validity','deadline','lapse'],
+      ['swap','swapped','switch','exchange','instead','change','changed'],
+      ['attribution','attribute','attributed','reattribution','reattributed','reattribute','unattributed'],
+      ['exporter','exp','id','ids','number'],
+      ['ledger','techops','approval','approve','approved'],
+      ['escalate','escalation','slack','channel','queries'],
+      ['form','google','invoice','warranty'],
+      ['metabase','table','database','data','query','record','records'],
+      ['exception','goodwill','missed','window']
+    ];
+    var STOP = {'a':1,'an':1,'the':1,'is':1,'are':1,'was':1,'to':1,'of':1,'for':1,'on':1,'in':1,'it':1,'and':1,'or':1,'do':1,'does':1,'did':1,'will':1,'be':1,'this':1,'that':1,'with':1,'have':1,'has':1,'as':1,'at':1,'by':1,'if':1,'so':1,'we':1,'us':1,'how':1,'what':1,'when':1,'why':1,'who':1,'can':1,'i':1,'my':1,'me':1};
+
+    function norm(s){ return (s||'').toLowerCase().replace(/[^a-z0-9$ ]+/g,' ').replace(/\$/g,' 30 ').replace(/\s+/g,' ').trim(); }
+    // build synonym lookup: word -> array of group words
+    var synMap = {};
+    SYN.forEach(function(g){ g.forEach(function(w){ synMap[w] = g; }); });
+    function tokenize(s){
+      return norm(s).split(' ').filter(function(t){ return t && !STOP[t] && t.length>1; });
+    }
+    function lev(a,b){
+      if(a===b) return 0;
+      var m=a.length, n=b.length;
+      if(!m) return n; if(!n) return m;
+      var prev=[], cur=[], i, j;
+      for(j=0;j<=n;j++) prev[j]=j;
+      for(i=1;i<=m;i++){
+        cur[0]=i;
+        for(j=1;j<=n;j++){
+          var cost = a.charAt(i-1)===b.charAt(j-1)?0:1;
+          cur[j]=Math.min(prev[j]+1, cur[j-1]+1, prev[j-1]+cost);
+        }
+        for(j=0;j<=n;j++) prev[j]=cur[j];
+      }
+      return cur[n];
+    }
+    function fuzzyHit(qt, tokenSet){
+      if(tokenSet[qt]) return true;
+      // substring / typo tolerance
+      var keys = Object.keys(tokenSet);
+      for(var i=0;i<keys.length;i++){
+        var t = keys[i];
+        if(t.length>=4 && qt.length>=4 && (t.indexOf(qt)===0 || qt.indexOf(t)===0)) return true;
+        if(qt.length>=4){
+          var d = lev(qt,t);
+          if(d<=1) return true;
+          if(qt.length>=6 && d<=2) return true;
+        }
+      }
+      return false;
+    }
+
+    // index each card
+    faqs.forEach(function(f){
+      var qt = f.querySelector('.qt') ? f.querySelector('.qt').textContent : '';
+      var variantEls = f.querySelectorAll('.variants .chip');
+      var variants = [].map.call(variantEls, function(c){ return c.textContent; }).join(' ');
+      var full = f.textContent;
+      var cat = f.closest('section.cat');
+      var catName = cat ? cat.querySelector('h3').textContent : '';
+      var tset = {};
+      tokenize(qt+' '+variants+' '+full+' '+catName).forEach(function(t){
+        tset[t]=true;
+        if(synMap[t]) synMap[t].forEach(function(w){ tset[w]=true; });
+      });
+      f._tset = tset;
+      f._q = qt.trim();
+      f._variants = [].map.call(variantEls, function(c){ return c.textContent; });
+    });
+
+    // suggestion corpus: FAQ questions + chips + jump-to panels
+    var SUG = [];
+    faqs.forEach(function(f){
+      SUG.push({text:f._q, id:f.id, badge:f.id});
+      f._variants.forEach(function(v){ SUG.push({text:v, id:f.id, badge:f.id}); });
+    });
+    PANELS.forEach(function(p){
+      SUG.push({text:p.text, id:p.id, badge:p.badge, kw:p.kw, panel:true});
+    });
+
+    function setCardOpen(f,o){ f.classList.toggle('open',o); if(o){ f.querySelectorAll('details').forEach(function(d){ d.open=true; }); } }
+    function setCatOpen(c,o){ c.classList.toggle('closed',!o); }
+    function openPanel(id){
+      var el = document.getElementById(id); if(!el) return;
+      el.querySelectorAll('details.acc').forEach(function(d){ d.open=true; });
+      setTimeout(function(){ el.scrollIntoView({behavior:'smooth',block:'start'}); },40);
+    }
+
+    faqs.forEach(function(f){ f.querySelector('.faq-q').addEventListener('click', function(){ f.classList.toggle('open'); }); });
+    cats.forEach(function(c){ c.querySelector('.cat-head').addEventListener('click', function(){ c.classList.toggle('closed'); }); });
+    document.getElementById('expandAll').addEventListener('click', function(){ cats.forEach(function(c){setCatOpen(c,true);}); faqs.forEach(function(f){setCardOpen(f,true);}); });
+    document.getElementById('collapseAll').addEventListener('click', function(){ faqs.forEach(function(f){setCardOpen(f,false);}); cats.forEach(function(c){setCatOpen(c,true);}); });
+
+    /* ----- run filter (loose matching + closest-match rescue) ----- */
+    function matchCount(f, qtokens){
+      var m=0;
+      qtokens.forEach(function(qt){ if(fuzzyHit(qt, f._tset)) m++; });
+      return m;
+    }
+    function run(){
+      var raw = q.value.trim();
+      clr.style.display = raw ? 'block' : 'none';
+      if(!raw){
+        faqs.forEach(function(f){ f.style.display=''; setCardOpen(f,false); });
+        cats.forEach(function(c){ c.style.display=''; setCatOpen(c,true); });
+        count.textContent=''; noresults.style.display='none';
+        return;
+      }
+      var qtokens = tokenize(raw);
+      if(qtokens.length===0){ qtokens = norm(raw).split(' ').filter(Boolean); }
+      var shown=0, scores=[];
+      faqs.forEach(function(f,i){
+        var m = matchCount(f, qtokens);
+        scores[i] = m;
+        // loose matching: all tokens, or at least 60% of them for 3+ word queries
+        var hit = (m===qtokens.length) || (qtokens.length>=3 && m/qtokens.length>=0.6);
+        f.style.display = hit ? '' : 'none';
+        setCardOpen(f, hit);
+        if(hit) shown++;
+      });
+      var closest = false;
+      if(shown===0){
+        // rescue: surface the closest matches instead of a dead end
+        var best = Math.max.apply(null, scores);
+        if(best>=1){
+          var order = scores.map(function(m,i){ return {m:m,i:i}; })
+                            .filter(function(o){ return o.m>=Math.max(1,best-1); })
+                            .sort(function(a,b){ return b.m-a.m; })
+                            .slice(0,4);
+          order.forEach(function(o){ var f=faqs[o.i]; f.style.display=''; setCardOpen(f,true); shown++; });
+          closest = shown>0;
+        }
+      }
+      cats.forEach(function(c){
+        var vis = [].slice.call(c.querySelectorAll('article.faq')).some(function(f){ return f.style.display!=='none'; });
+        c.style.display = vis ? '' : 'none'; setCatOpen(c,true);
+      });
+      count.textContent = closest ? (shown + ' closest ' + (shown===1?'match':'matches')) : (shown + (shown===1?' match':' matches'));
+      noresults.style.display = shown ? 'none' : 'block';
+    }
+
+    /* ----- suggestions (autocomplete, includes panel jumps) ----- */
+    var sugIdx = -1, sugItems = [];
+    function buildSuggest(){
+      var raw = q.value.trim();
+      if(raw.length<2){ suggest.style.display='none'; return; }
+      var nq = norm(raw);
+      var qtok = tokenize(raw);
+      var scored = [];
+      var seen = {};
+      SUG.forEach(function(s){
+        var key = s.text.toLowerCase()+(s.panel?'|p':'');
+        if(seen[key]) return;
+        var ns = norm(s.text + ' ' + (s.kw||''));
+        var nsText = norm(s.text);
+        var score = 0;
+        if(nsText.indexOf(nq)===0) score += 100;
+        else if(nsText.indexOf(nq)!==-1) score += 60;
+        else if(ns.indexOf(nq)!==-1) score += 25;
+        var stok = ns.split(' ');
+        qtok.forEach(function(t){
+          var expanded = synMap[t] ? synMap[t].concat([t]) : [t];
+          var found = false;
+          for(var e=0;e<expanded.length && !found;e++){
+            if(stok.indexOf(expanded[e])!==-1) found = true;
+          }
+          if(found){ score += 12; }
+          else {
+            for(var i=0;i<stok.length;i++){ if(stok[i].length>=4 && t.length>=4 && lev(stok[i],t)<=1){ score+=7; break; } }
+          }
+        });
+        if(s.panel && score>0) score += 8; // surface panel jumps on intent queries
+        if(score>0){ seen[key]=1; scored.push({text:s.text, id:s.id, badge:s.badge, panel:s.panel, score:score}); }
+      });
+      scored.sort(function(a,b){ return b.score-a.score; });
+      sugItems = scored.slice(0,7);
+      if(sugItems.length===0){ suggest.style.display='none'; return; }
+      sugIdx=-1;
+      suggest.innerHTML = sugItems.map(function(s){
+        return '<div class="sg" data-id="'+s.id+'" data-panel="'+(s.panel?'1':'')+'" data-text="'+s.text.replace(/"/g,'&quot;')+'"><span class="sic">&#128269;</span><span>'+s.text+'</span><span class="sid'+(s.panel?' map':'')+'">'+s.badge+'</span></div>';
+      }).join('');
+      suggest.style.display='block';
+    }
+    function chooseSuggest(el){
+      var id = el.getAttribute('data-id');
+      var isPanel = el.getAttribute('data-panel')==='1';
+      suggest.style.display='none';
+      if(isPanel){
+        // jump to a panel: clear the filter so the page is fully visible, then open + scroll
+        q.value=''; run();
+        openPanel(id);
+        return;
+      }
+      q.value = el.getAttribute('data-text');
+      run();
+      var t = document.getElementById(id);
+      if(t){ var c=t.closest('section.cat'); if(c){c.style.display='';setCatOpen(c,true);} t.style.display=''; setCardOpen(t,true); setTimeout(function(){ t.scrollIntoView({behavior:'smooth',block:'center'}); },40); }
+    }
+    suggest.addEventListener('click', function(e){ var el=e.target.closest('.sg'); if(el) chooseSuggest(el); });
+
+    q.addEventListener('input', function(){ buildSuggest(); run(); });
+    q.addEventListener('keydown', function(e){
+      if(suggest.style.display==='block' && sugItems.length){
+        if(e.key==='ArrowDown'){ e.preventDefault(); sugIdx=Math.min(sugIdx+1,sugItems.length-1); paintSug(); }
+        else if(e.key==='ArrowUp'){ e.preventDefault(); sugIdx=Math.max(sugIdx-1,0); paintSug(); }
+        else if(e.key==='Enter'){ if(sugIdx>=0){ e.preventDefault(); chooseSuggest(suggest.children[sugIdx]); } else { suggest.style.display='none'; } }
+        else if(e.key==='Escape'){ suggest.style.display='none'; }
+      }
+    });
+    function paintSug(){ [].forEach.call(suggest.children, function(c,i){ c.classList.toggle('active', i===sugIdx); }); }
+    document.addEventListener('click', function(e){ if(!e.target.closest('.search')) suggest.style.display='none'; });
+    clr.addEventListener('click', function(){ q.value=''; suggest.style.display='none'; run(); q.focus(); });
+
+    /* ----- anchor / cross-ref clicks ----- */
+    document.addEventListener('click', function(e){
+      var a = e.target.closest('a[href^="#"]'); if(!a) return;
+      var id = a.getAttribute('href').slice(1);
+      var el = document.getElementById(id); if(!el) return;
+      if(el.classList.contains('faq')){
+        var c = el.closest('section.cat'); if(c){ c.style.display=''; setCatOpen(c,true); }
+        el.style.display=''; setCardOpen(el,true);
+        setTimeout(function(){ el.scrollIntoView({behavior:'smooth',block:'center'}); },30);
+        e.preventDefault();
+      } else if(el.classList.contains('cat')){ el.style.display=''; setCatOpen(el,true); }
+    });
+
+    // keyboard: "/" focuses search
+    document.addEventListener('keydown', function(e){ if(e.key==='/' && document.activeElement!==q){ e.preventDefault(); q.focus(); } });
+  }
+
+  initApp();
+})();
+</script>
+</body>
+</html>
