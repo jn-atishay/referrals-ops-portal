@@ -25,166 +25,50 @@
 </nav>
 
 <main class="wrap">
-
   <div class="page-head">
     <h1>Campaign Controls <span class="status planned" style="vertical-align:middle">Planned</span></h1>
-    <p>The end goal: CX resolves the common reward tickets themselves — change a customer's campaign, nudge their wallet credit, resend the gift-form email — without a TechOps ping. The forms, fields and validation are built here as the target UX. The backend calls and audit log get wired in a later phase.</p>
+    <p>Self-serve CX actions. UI only — backend not wired.</p>
   </div>
 
-  <div class="wip-banner plan">
-    <span class="ic">🎛️</span>
-    <div class="body"><b>UI provisioned, backend not wired.</b> Submitting any form below shows a WIP notice — nothing is sent. Today these actions still run through <b>#referrals-queries</b> → TechOps (see the playbook). Every action here will one day write to an audit log with the operator, timestamp and reason.</div>
-  </div>
-
-  <!-- ACTION 1: CHANGE CAMPAIGN -->
   <div class="panel">
-    <h2><span class="kicker">Action · Planned</span>Change a customer's campaign</h2>
-    <p class="lead">Move a referral onto another campaign's gift (e.g. an approved cross-campaign swap). The change is made on the <b>referee's</b> account — see playbook <a href="playbook.html#R1.1">R1.1</a> and <a href="playbook.html#R1.4">R1.4</a>.</p>
+    <h2>Change a customer's campaign</h2>
     <form class="ops-form" data-wip="Change campaign">
       <div class="two">
-        <div class="fld">
-          <label>Referrer exporter ID <span class="req">*</span></label>
-          <input type="text" inputmode="numeric" placeholder="e.g. 12345" required>
-        </div>
-        <div class="fld">
-          <label>Referee exporter ID <span class="req">*</span></label>
-          <input type="text" inputmode="numeric" placeholder="ledger sits here" required>
-          <span class="hint">Required before approval — the ledger change is on the referee.</span>
-        </div>
+        <div class="fld"><label>Referrer exporter ID</label><input type="text" inputmode="numeric" placeholder="e.g. 12345"></div>
+        <div class="fld"><label>Referee exporter ID</label><input type="text" inputmode="numeric" placeholder="e.g. 12345"></div>
       </div>
-      <div class="two">
-        <div class="fld">
-          <label>Current campaign</label>
-          <input type="text" value="Auto-filled from the referral record" disabled>
-          <span class="hint">Will be read live once wired.</span>
-        </div>
-        <div class="fld">
-          <label>New campaign <span class="req">*</span></label>
-          <select required>
-            <option value="">Select campaign…</option>
-            <option>This month · Coffee Machine</option>
-            <option>Previous campaign</option>
-            <option>Alexa Echo Dot — 15-day activation window</option>
-            <option>Base — $30 / $30</option>
-          </select>
-          <span class="hint">List will be populated from the campaign config.</span>
-        </div>
+      <div class="fld"><label>New campaign</label>
+        <select><option value="">Select…</option><option>This month · Coffee Machine</option><option>Alexa Echo Dot</option><option>Base · $30 / $30</option></select>
       </div>
-      <div class="fld">
-        <label>Reason / approval reference <span class="req">*</span></label>
-        <textarea rows="2" placeholder="Why the change is approved, and who approved it" required></textarea>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn-primary">Submit change</button>
-        <span class="status planned">Backend not wired</span>
-      </div>
+      <div class="fld"><label>Reason</label><textarea rows="2"></textarea></div>
+      <div class="form-actions"><button type="submit" class="btn-primary">Submit</button><span class="status planned">Not wired</span></div>
     </form>
-    <div class="callout warn"><div class="h">Reminder</div>Changing the campaign ID does <b>not</b> send the gift-form email on its own — it's sent by hand (playbook <a href="playbook.html#R6.1">R6.1</a>). Use the "Send gift-form email" action below after the change.</div>
   </div>
 
-  <!-- ACTION 2: CREDITS -->
   <div class="panel">
-    <h2><span class="kicker">Action · Planned</span>Add / reduce wallet credits</h2>
-    <p class="lead">Adjust a customer's Skydo wallet credit — e.g. grant a $30 referral credit that didn't post, or correct a mistake. Referral credit is fee credit, not cash (playbook <a href="playbook.html#R4.2">R4.2</a>).</p>
+    <h2>Add / reduce wallet credits</h2>
     <form class="ops-form" data-wip="Wallet credit adjustment">
       <div class="two">
-        <div class="fld">
-          <label>Exporter ID <span class="req">*</span></label>
-          <input type="text" inputmode="numeric" placeholder="account to adjust" required>
-        </div>
-        <div class="fld">
-          <label>Direction <span class="req">*</span></label>
-          <select required>
-            <option value="">Select…</option>
-            <option>Add credit (+)</option>
-            <option>Reduce credit (−)</option>
-          </select>
-        </div>
+        <div class="fld"><label>Exporter ID</label><input type="text" inputmode="numeric" placeholder="e.g. 12345"></div>
+        <div class="fld"><label>Amount (USD)</label><input type="number" min="0" step="1" placeholder="e.g. 30"></div>
       </div>
-      <div class="two">
-        <div class="fld">
-          <label>Amount (USD) <span class="req">*</span></label>
-          <input type="number" min="0" step="1" placeholder="e.g. 30" required>
-        </div>
-        <div class="fld">
-          <label>Credit type</label>
-          <select>
-            <option>Referral ($30, non-expiring)</option>
-            <option>Promotional (route to campaign owner)</option>
-            <option>Correction / goodwill</option>
-          </select>
-          <span class="hint">Promotional credits belong to other teams (playbook <a href="playbook.html#R4.3">R4.3</a>).</span>
-        </div>
-      </div>
-      <div class="fld">
-        <label>Reason / reference <span class="req">*</span></label>
-        <textarea rows="2" placeholder="Ticket link, reason, approver" required></textarea>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn-primary">Apply adjustment</button>
-        <span class="status planned">Backend not wired</span>
-      </div>
+      <div class="fld"><label>Direction</label><select><option value="">Select…</option><option>Add (+)</option><option>Reduce (−)</option></select></div>
+      <div class="fld"><label>Reason</label><textarea rows="2"></textarea></div>
+      <div class="form-actions"><button type="submit" class="btn-primary">Apply</button><span class="status planned">Not wired</span></div>
     </form>
   </div>
 
-  <!-- ACTION 3: SEND GIFT MAIL -->
   <div class="panel">
-    <h2><span class="kicker">Action · Planned</span>Send the gift-form email</h2>
-    <p class="lead">Trigger the gift-form (address) email to a qualified referrer. Today this is a <b>manual</b> send — this action replaces that. See playbook <a href="playbook.html#R6.1">R6.1</a>.</p>
+    <h2>Send the gift-form email</h2>
     <form class="ops-form" data-wip="Send gift-form email">
-      <div class="two">
-        <div class="fld">
-          <label>Referrer exporter ID <span class="req">*</span></label>
-          <input type="text" inputmode="numeric" placeholder="who receives the form" required>
-        </div>
-        <div class="fld">
-          <label>Campaign / gift</label>
-          <input type="text" value="Auto-filled from campaign" disabled>
-        </div>
-      </div>
-      <div class="fld">
-        <label>Email template</label>
-        <select>
-          <option>Standard gift-form (first send)</option>
-          <option>Renewed gift-form (after a campaign change)</option>
-          <option>Reminder (form not filled)</option>
-        </select>
-      </div>
-      <div class="fld">
-        <label>Send to</label>
-        <input type="email" placeholder="Auto-filled from the customer's email" disabled>
-      </div>
-      <div class="form-actions">
-        <button type="submit" class="btn-primary">Send email</button>
-        <span class="status planned">Backend not wired</span>
-      </div>
+      <div class="fld"><label>Referrer exporter ID</label><input type="text" inputmode="numeric" placeholder="e.g. 12345"></div>
+      <div class="fld"><label>Template</label><select><option>Standard gift-form</option><option>Renewed (after campaign change)</option><option>Reminder</option></select></div>
+      <div class="form-actions"><button type="submit" class="btn-primary">Send</button><span class="status planned">Not wired</span></div>
     </form>
-    <div class="callout idea"><div class="h">Why this matters</div>The gift-form email being sent by hand is the single most common silent failure — a campaign ID gets changed but no mail goes out, so the customer never fills the form and the gift never ships. Automating this send closes that gap.</div>
   </div>
-
-  <!-- AUDIT LOG -->
-  <div class="panel">
-    <h2><span class="kicker">Provisioned</span>Action audit log</h2>
-    <p class="lead">Every self-serve action will land here — who did what, to whom, when, and why. This is what a wired action would record.</p>
-    <div class="tbl-scroll">
-      <table class="data">
-        <thead><tr><th>When (IST)</th><th>Operator</th><th>Action</th><th>Target</th><th>Detail</th><th>Reason</th></tr></thead>
-        <tbody>
-          <tr><td colspan="6" class="wipcell" style="text-align:center; padding:22px">No actions yet — the audit log fills once the backend is wired (WIP).</td></tr>
-          <tr style="opacity:.55"><td>—</td><td>cx@skydo.com</td><td>Change campaign</td><td>referee 12345</td><td>prev → current campaign</td><td>approved swap · sample row</td></tr>
-          <tr style="opacity:.55"><td>—</td><td>cx@skydo.com</td><td>Send gift-form email</td><td>referrer 67890</td><td>renewed template</td><td>post campaign change · sample row</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="callout warn"><div class="h">Until this is live</div>Keep raising reward/campaign changes in <b>#referrals-queries</b> with both exporter IDs, the ask, the reason and screenshots — exactly as the playbook's golden rules describe.</div>
-  </div>
-
 </main>
 
-<footer>
-  Skydo · Referrals Ops Portal — internal use only. Not indexed.<br>
-  Campaign Controls is a UI provision — no action here reaches production yet.
-</footer>
+<footer>Skydo · Referrals Ops Portal — internal, not indexed.</footer>
 
 <script src="assets/portal.js"></script>
 </body>

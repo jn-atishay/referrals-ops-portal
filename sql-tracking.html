@@ -25,92 +25,29 @@
 </nav>
 
 <main class="wrap">
-
   <div class="page-head">
     <h1>Tracking Guide <span class="status live" style="vertical-align:middle">Live</span></h1>
-    <p>What to track for the referral programme and how to pull it. This is the plain-English version — <b>what</b> each metric tells you and <b>how</b> to think about querying it.</p>
+    <p>What to track for the referral programme. Concrete queries are kept private.</p>
   </div>
 
-  <div class="wip-banner plan">
-    <span class="ic">🔒</span>
-    <div class="body"><b>Queries kept private for now.</b> Concrete SQL and connection details aren't published on this page — it's a public URL. The ready-to-run queries live with the team (private). This page is the shareable "what &amp; how" reference; we'll link the query recipes from a private place later.</div>
-  </div>
-
-  <!-- WHAT TO TRACK -->
   <div class="panel">
-    <h2><span class="kicker">What To Track</span>The metrics that matter</h2>
-    <p class="lead">The handful of numbers that tell you whether the programme is healthy and where the work is.</p>
     <div class="tbl-scroll">
       <table class="data">
-        <thead><tr><th>Metric</th><th>What it tells you</th><th>How to pull it</th></tr></thead>
+        <thead><tr><th>Metric</th><th>What it tells you</th></tr></thead>
         <tbody>
-          <tr>
-            <td><b>Referral funnel</b></td>
-            <td>Health of the pipeline this month — how many referrals are at each stage.</td>
-            <td>Count referrals for the current month, grouped by referral state (signup → onboarding-complete → achieved).</td>
-          </tr>
-          <tr>
-            <td><b>New first-time referrers</b></td>
-            <td>Fresh supply — customers referring for the very first time.</td>
-            <td>Find each referrer's first-ever referral and keep those whose first one is dated this month.</td>
-          </tr>
-          <tr>
-            <td><b>Share rate</b></td>
-            <td>What share of active customers are referring at all.</td>
-            <td>Of customers who had a successful payment this month, what fraction also referred someone this month.</td>
-          </tr>
-          <tr>
-            <td><b>Gifts owed</b></td>
-            <td>Dispatch workload — who qualified and is waiting on a gift.</td>
-            <td>List referrals in the <i>achieved</i> state, then cross-check the dispatch/tracking sheet for what's actually shipped.</td>
-          </tr>
-          <tr>
-            <td><b>$30 credits owed</b></td>
-            <td>Finance signal — the wallet-credit outlay for the month.</td>
-            <td>Count referees who reached onboarding-complete this month, times $30.</td>
-          </tr>
-          <tr>
-            <td><b>Power referrers</b></td>
-            <td>Who to nurture — the customers driving the most achieved referrals.</td>
-            <td>Rank referrers by their count of achieved referrals, all-time.</td>
-          </tr>
+          <tr><td>Referral funnel</td><td>Referrals at each stage this month.</td></tr>
+          <tr><td>New first-time referrers</td><td>Customers referring for the first time.</td></tr>
+          <tr><td>Share rate</td><td>Share of active customers who refer.</td></tr>
+          <tr><td>Gifts owed</td><td>Qualified referrers waiting on a gift.</td></tr>
+          <tr><td>$30 credits owed</td><td>Wallet-credit outlay for the month.</td></tr>
+          <tr><td>Power referrers</td><td>Top referrers by achieved referrals.</td></tr>
         </tbody>
       </table>
     </div>
   </div>
-
-  <!-- HOW TO QUERY -->
-  <div class="panel">
-    <h2><span class="kicker">How To Query</span>The basics, every time</h2>
-    <p class="lead">Six habits that keep referral numbers correct. They apply to almost every query above.</p>
-    <div class="flow" style="margin-top:6px"></div>
-    <ol class="steps" style="counter-reset:s; margin:6px 0 0; padding-left:0; list-style:none">
-      <li><b>Start in the analytics tool</b> on the referrals data — a new question or a copy of an existing one.</li>
-      <li><b>Think in IST months.</b> Bucket by month in India time, not UTC, or your month boundaries will be off.</li>
-      <li><b>Filter by referral state.</b> The three states run signup-complete → onboarding-complete → achieved. Pick the stage the metric is about.</li>
-      <li><b>Drop noise.</b> Exclude internal/test accounts and any referral row that has no referrer attached.</li>
-      <li><b>Dedupe referees.</b> Count each referee once, against their earliest referrer, so a re-attributed referral isn't double-counted.</li>
-      <li><b>Gifts need the sheet.</b> The database tells you who <i>qualified</i>; whether a parcel actually shipped lives in the tracking sheet (see <a href="sheets-and-ids.html">Sheets &amp; IDs</a>). Always join the two for a "where's my gift" question.</li>
-    </ol>
-    <div class="callout idea"><div class="h">Field-level detail</div>The <a href="playbook.html#rules">CX Playbook's data map</a> lists the exact places to find IDs, campaigns, states and the reward ledger for day-to-day lookups. Keep the concrete query recipes in the team's private space, not on this page.</div>
-  </div>
-
-  <!-- WHAT'S NEXT -->
-  <div class="panel">
-    <h2><span class="kicker">Next</span>When we wire this up</h2>
-    <ul class="clean">
-      <li>Keep a private list of the exact query recipes (funnel, first-timers, share rate, gifts owed, credits, power referrers) and link them here for signed-in team members.</li>
-      <li>Or surface the numbers as read-only tiles on the <a href="index.html">dashboard</a> / <a href="inventory.html#finance">Finance</a> page, refreshed on a schedule.</li>
-      <li>Either way, no production connection details or customer IDs go on this public page.</li>
-    </ul>
-  </div>
-
 </main>
 
-<footer>
-  Skydo · Referrals Ops Portal — internal use only. Not indexed.<br>
-  Guidance only — concrete queries and connection details are kept private.
-</footer>
+<footer>Skydo · Referrals Ops Portal — internal, not indexed.</footer>
 
 <script src="assets/portal.js"></script>
 </body>

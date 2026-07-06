@@ -25,101 +25,29 @@
 </nav>
 
 <main class="wrap">
-
   <div class="page-head">
     <h1>Sheets &amp; Tracking IDs <span class="status wip" style="vertical-align:middle">WIP</span></h1>
-    <p>One place for every Google Sheet the referrals programme runs on, and the tracking-ID scheme that ties a gift back to an exporter. The structure is here — paste the real sheet URLs into the <code>WIP</code> cells and this becomes the team's single source of truth.</p>
+    <p>The Google Sheets the programme runs on. Paste links privately — don't commit them here.</p>
   </div>
 
-  <div class="wip-banner">
-    <span class="ic">🚧</span>
-    <div class="body"><b>Links to paste in.</b> Sheet URLs are private and not stored in this public repo. Replace each <code>WIP — paste URL</code> cell with the real link (or, better, keep links in a private config and render them here later). Nothing here is auto-synced yet.</div>
-  </div>
-
-  <!-- SHEET REGISTRY -->
   <div class="panel">
-    <h2><span class="kicker">Registry</span>Google Sheets the programme runs on</h2>
-    <p class="lead">Every operational sheet, what it holds, and who owns it. Keep this list complete — a missing sheet is how gifts fall through the cracks.</p>
     <div class="tbl-scroll">
       <table class="data">
-        <thead><tr><th>Sheet</th><th>Purpose</th><th>Key columns</th><th>Owner</th><th>Link</th></tr></thead>
+        <thead><tr><th>Sheet</th><th>Purpose</th><th>Link</th></tr></thead>
         <tbody>
-          <tr>
-            <td><b>Gift dispatch &amp; tracking</b></td>
-            <td>One row per dispatched gift. The source of truth for "where is my parcel" (playbook R3.2).</td>
-            <td>exporter_id, gift, delivery&nbsp;ID, partner, dispatch date, status</td>
-            <td>Ops</td>
-            <td class="wipcell">WIP — paste URL</td>
-          </tr>
-          <tr>
-            <td><b>Gift inventory</b></td>
-            <td>Stock on hand per gift SKU, reorder points, vendor. Feeds the Inventory module.</td>
-            <td>gift, SKU, vendor, on&nbsp;hand, reserved, reorder&nbsp;point</td>
-            <td>Ops / Procurement</td>
-            <td class="wipcell">WIP — paste URL</td>
-          </tr>
-          <tr>
-            <td><b>Gift-form responses (address)</b></td>
-            <td>Google Form submissions — the referrer's shipping address. No form = no dispatch (R3.1).</td>
-            <td>timestamp, exporter_id, name, address, phone</td>
-            <td>Ops</td>
-            <td class="wipcell">WIP — paste URL</td>
-          </tr>
-          <tr>
-            <td><b>Campaign config</b></td>
-            <td>Campaign → gift → eligibility mapping. Used to brief campaigns and confirm which gift applies.</td>
-            <td>campaign_id, month, gift, window, rules</td>
-            <td>Growth / Referrals</td>
-            <td class="wipcell">WIP — paste URL</td>
-          </tr>
-          <tr>
-            <td><b>Finance &amp; PO tracker</b></td>
-            <td>Purchase orders, gift spend, and $30-credit reconciliation. Feeds the Finance module.</td>
-            <td>PO#, vendor, gift, qty, amount, invoice, status</td>
-            <td>Finance</td>
-            <td class="wipcell">WIP — paste URL</td>
-          </tr>
-          <tr>
-            <td><b>Escalation / query log</b></td>
-            <td>Optional: log of #referrals-queries escalations for pattern-spotting.</td>
-            <td>date, exporter_id(s), ask, resolution</td>
-            <td>CX</td>
-            <td class="wipcell">WIP — paste URL</td>
-          </tr>
+          <tr><td>Gift dispatch &amp; tracking</td><td>One row per dispatched gift.</td><td class="wipcell">WIP — paste URL</td></tr>
+          <tr><td>Gift inventory</td><td>Stock per gift SKU.</td><td class="wipcell">WIP — paste URL</td></tr>
+          <tr><td>Gift-form responses</td><td>Shipping addresses from the form.</td><td class="wipcell">WIP — paste URL</td></tr>
+          <tr><td>Campaign config</td><td>Campaign → gift → eligibility.</td><td class="wipcell">WIP — paste URL</td></tr>
+          <tr><td>Finance &amp; PO tracker</td><td>POs, gift spend, reconciliation.</td><td class="wipcell">WIP — paste URL</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="callout warn"><div class="h">Keep sheet links out of the public repo</div>This site is publicly reachable. Don't commit private Sheet URLs into the HTML. Either paste links only in a private fork, or wire a small private config the page reads at runtime (a later phase).</div>
+    <p class="muted" style="margin-top:14px">Tracking chain: <code>exporter_id</code> → campaign → gift/SKU → form address → delivery ID + partner → PO#.</p>
   </div>
-
-  <!-- TRACKING ID SCHEME -->
-  <div class="panel">
-    <h2><span class="kicker">How Gifts Are Tracked</span>The tracking-ID scheme across gifts</h2>
-    <p class="lead">Every gift threads through the same set of IDs, from qualification to delivery. This is the map for tying a parcel back to a customer.</p>
-    <div class="tbl-scroll">
-      <table class="data">
-        <thead><tr><th>ID / field</th><th>What it is</th><th>Where it lives</th><th>Links to</th></tr></thead>
-        <tbody>
-          <tr><td><code>exporter_id</code></td><td>The customer (referrer who won the gift).</td><td>Every sheet · the analytics tool</td><td>The whole chain — always lead with it.</td></tr>
-          <tr><td><code>campaign_id</code></td><td>Which campaign's gift applies (this month's gift campaign).</td><td>Campaign config sheet</td><td>gift &amp; eligibility</td></tr>
-          <tr><td>Gift / SKU</td><td>The physical item and its stock-keeping unit.</td><td>Inventory sheet</td><td>vendor, stock, PO</td></tr>
-          <tr><td>Form submission</td><td>The referrer's address response. Dispatch starts only after this.</td><td>Gift-form responses sheet</td><td>dispatch row</td></tr>
-          <tr><td><b>Delivery ID</b></td><td>The dispatch/consignment reference for the parcel.</td><td>Dispatch &amp; tracking sheet</td><td>delivery partner tracking</td></tr>
-          <tr><td>Delivery partner</td><td>Courier handling the parcel; where the customer-facing tracking lives.</td><td>Dispatch &amp; tracking sheet</td><td>partner's tracking site</td></tr>
-          <tr><td>PO #</td><td>Purchase order the gift was bought under (for invoice/warranty).</td><td>Finance &amp; PO tracker</td><td>vendor invoice, warranty</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="callout idea"><div class="h">The chain, in one line</div><code>exporter_id</code> → <code>campaign_id</code> → gift/SKU → form address → <b>delivery ID</b> + partner → PO#. If any link is missing for a gift that should have shipped, that's the escalation (playbook <a href="playbook.html#R3.2">R3.2</a>).</div>
-    <div class="callout case"><div class="h">Worked example</div>A Coffee Machine and a Mokobara gift were both raised as "no tracking" — i.e. no <b>delivery ID</b> row in the dispatch sheet. Naming the exporter_id + gift is what makes these actionable.</div>
-  </div>
-
 </main>
 
-<footer>
-  Skydo · Referrals Ops Portal — internal use only. Not indexed.<br>
-  Registry structure is ready — paste real links privately, don't commit them here.
-</footer>
+<footer>Skydo · Referrals Ops Portal — internal, not indexed.</footer>
 
 <script src="assets/portal.js"></script>
 </body>

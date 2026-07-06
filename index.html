@@ -10,13 +10,9 @@
 </head>
 <body>
 
-<!-- ===================== TOP NAV ===================== -->
 <nav class="portal-nav">
   <div class="pn-wrap">
-    <a class="pn-brand" href="index.html">
-      <span class="a">sky</span><span class="b">do</span>
-      <span class="sep">/</span><span class="tag">Referrals Ops</span>
-    </a>
+    <a class="pn-brand" href="index.html"><span class="a">sky</span><span class="b">do</span><span class="sep">/</span><span class="tag">Referrals Ops</span></a>
     <div class="pn-links">
       <a href="index.html">Home</a>
       <a href="playbook.html">CX Playbook</a>
@@ -28,7 +24,6 @@
   </div>
 </nav>
 
-<!-- ===================== HERO ===================== -->
 <header class="ops-hero">
   <div class="wrap">
     <span class="logo-chip">
@@ -36,96 +31,47 @@
       <span id="logoFallback" style="display:none;font-weight:800;font-size:22px;letter-spacing:-1px"><span style="color:#2b2f8f">sky</span><span style="color:#1a9a4e">do</span></span>
     </span>
     <h1>Referrals Ops Portal</h1>
-    <p class="sub">One home for the referrals CX team — resolution playbook, tracking queries, gift &amp; sheet links, and (soon) self-serve campaign, credit and gift-mail actions. Everything the team needs to run the programme without pinging engineering.</p>
-    <div class="meta-row">
-      <span class="pill">For: Referrals CX &amp; Ops</span>
-      <span class="pill">6 modules</span>
-      <span class="pill v">v0.1 · scaffolding</span>
-    </div>
+    <p class="sub">Home for the referrals CX team.</p>
   </div>
 </header>
 
 <main class="wrap">
-
-  <!-- MODULE GRID -->
   <div class="mod-grid">
 
     <a class="mod-card" href="playbook.html">
       <div class="row1"><span class="ic">📘</span><h3>CX Resolution Playbook</h3><span class="status live">Live</span></div>
-      <p>The 24-scenario resolution guide (v2.1). Search a customer problem, follow the steps, close the query. Metabase map and escalation rules included.</p>
-      <span class="go">Open playbook →</span>
+      <p>The 24-scenario resolution guide. Search a problem, follow the steps.</p>
     </a>
 
     <a class="mod-card" href="sql-tracking.html">
       <div class="row1"><span class="ic">🧮</span><h3>Tracking Guide</h3><span class="status live">Live</span></div>
-      <p>What to track and how to pull it — referral funnel, new first-time referrers, share rate, gifts owed and $30-credit totals. Plain-English guidance; concrete queries stay private.</p>
-      <span class="go">Open guide →</span>
+      <p>What to track for the programme. Queries kept private.</p>
     </a>
 
     <a class="mod-card" href="sheets-and-ids.html">
       <div class="row1"><span class="ic">🔗</span><h3>Sheets &amp; Tracking IDs</h3><span class="status wip">WIP</span></div>
-      <p>One registry of every Google Sheet (dispatch, inventory, form responses, finance) and the tracking-ID scheme that links a gift to an exporter. Structure ready — links to paste in.</p>
-      <span class="go">Open registry →</span>
+      <p>Every Google Sheet and the gift tracking-ID chain.</p>
     </a>
 
-    <a class="mod-card soon" href="campaigns.html">
+    <a class="mod-card" href="campaigns.html">
       <div class="row1"><span class="ic">🎛️</span><h3>Campaign Controls</h3><span class="status planned">Planned</span></div>
-      <p>Self-serve actions for CX: change a customer's campaign, add/reduce wallet credits, and send the gift-form email. UI &amp; validation provisioned; backend not wired yet.</p>
-      <span class="go">Preview actions →</span>
+      <p>Change campaign, adjust credits, send gift mail.</p>
     </a>
 
     <a class="mod-card" href="inventory.html">
       <div class="row1"><span class="ic">📦</span><h3>Gift Inventory &amp; Orders</h3><span class="status wip">WIP</span></div>
-      <p>Stock on hand per gift, dispatch/order log with tracking, and reorder points. Table structure ready — wire to the inventory &amp; tracking sheets.</p>
-      <span class="go">Open inventory →</span>
+      <p>Stock, dispatch log and reorder points per gift.</p>
     </a>
 
     <a class="mod-card" href="inventory.html#finance">
       <div class="row1"><span class="ic">💰</span><h3>Finance &amp; Reconciliation</h3><span class="status wip">WIP</span></div>
-      <p>Gift spend, $30-credit outlay, cost per achieved referral, and PO reconciliation against procurement. Metric cards &amp; ledger provisioned — connect the numbers.</p>
-      <span class="go">Open finance →</span>
+      <p>Gift spend, credit outlay and PO reconciliation.</p>
     </a>
 
   </div>
-
-  <!-- START HERE -->
-  <div class="panel gold">
-    <h2><span class="kicker">Start Here</span>How to use this portal</h2>
-    <p class="lead">Work the query yourself first. Most tickets close without a single escalation.</p>
-    <ul class="clean">
-      <li><b>Customer has a problem?</b> Open the <a href="playbook.html">CX Playbook</a> and search their words.</li>
-      <li><b>Need to check data?</b> Grab a query from the <a href="sql-tracking.html">SQL Tracking Library</a> and run it in Metabase.</li>
-      <li><b>Chasing a gift or a sheet?</b> The <a href="sheets-and-ids.html">Sheets &amp; IDs</a> registry has the links and the tracking scheme.</li>
-      <li><b>Need to escalate?</b> Post in <b>#referrals-queries</b> with both exporter IDs and screenshots — see the golden rules in the playbook.</li>
-    </ul>
-  </div>
-
-  <!-- ROADMAP -->
-  <div class="panel">
-    <h2><span class="kicker">Build Plan</span>Roadmap &amp; status</h2>
-    <p class="lead">This portal is being built in phases. The scaffolding for every planned feature is already in the code — modules go from <span class="status wip">WIP</span> to <span class="status live">Live</span> as data and backends get connected.</p>
-    <div class="tbl-scroll">
-      <table class="data">
-        <thead><tr><th>Phase</th><th>Module</th><th>What it does</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>1</td><td>CX Resolution Playbook</td><td>Searchable resolution guide for the CX team</td><td><span class="status live">Live</span></td></tr>
-          <tr><td>1</td><td>Tracking Guide</td><td>What to track and how to pull it (queries kept private)</td><td><span class="status live">Live</span></td></tr>
-          <tr><td>2</td><td>Sheets &amp; Tracking IDs</td><td>Central registry of sheets + gift/exporter tracking IDs</td><td><span class="status wip">WIP · links</span></td></tr>
-          <tr><td>2</td><td>Gift Inventory &amp; Orders</td><td>Stock, dispatch log and reorder points per gift</td><td><span class="status wip">WIP · data</span></td></tr>
-          <tr><td>3</td><td>Finance &amp; Reconciliation</td><td>Gift spend, credit outlay, PO reconciliation</td><td><span class="status wip">WIP · data</span></td></tr>
-          <tr><td>4</td><td>Campaign Controls</td><td>CX self-serve: change campaign, adjust credits, send gift mail</td><td><span class="status planned">Planned</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="callout idea"><div class="h">Note for contributors</div>Each module is its own HTML file that links <code>assets/portal.css</code> + <code>assets/portal.js</code>. Add a module by copying a page, dropping a card in the grid above, and giving it a status badge. See <code>README.md</code>.</div>
-  </div>
-
 </main>
 
-<footer>
-  Skydo · Referrals Ops Portal — internal use only. Not indexed.<br>
-  Maintained by the referrals team · <a href="https://github.com/jn-atishay/referrals-ops-portal">source on GitHub</a>
-</footer>
+<footer>Skydo · Referrals Ops Portal — internal, not indexed.</footer>
 
 <script src="assets/portal.js"></script>
 </body>
